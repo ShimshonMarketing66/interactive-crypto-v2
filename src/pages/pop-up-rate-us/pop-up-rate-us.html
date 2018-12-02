@@ -1,0 +1,26 @@
+
+<ion-content padding>
+<div style="padding-top:10%"></div>
+  <ion-icon name="close" id="ic-close" style="    font-size: 35px;" (click)="close()"></ion-icon>
+  <div style="font-size:100%!important;" class="popTitle">{{ 'SATISFIED WITH OUR SERVICES' | translate }}</div>
+
+  <div style="text-align:center;font-family:Quicksand;">{{ 'leave us a review' | translate }}</div>
+  <div style="margin-top:5%;width:100%;"></div>
+  <div style="text-align: center;">
+<ion-icon  (tap)="onestar()" [name]="star>0 ? 'star' : 'star-o' "></ion-icon>
+<ion-icon  (tap)="twostar()" [name]="star>1 ? 'star' : 'star-o' "></ion-icon>
+<ion-icon  (tap)="threestar()" [name]="star>2 ? 'star' : 'star-o' "></ion-icon>
+<ion-icon  (tap)="fourstar()" [name]="star>3 ? 'star' : 'star-o' "></ion-icon>
+<ion-icon  (tap)="fourstar()" [name]="star>4 ? 'star' : 'star-o' "></ion-icon>
+
+   
+  </div>
+
+  <div *ngIf="4>star" style="text-align: center;" >{{ 'NOTSATISFIED' | translate }} ?</div>
+  <div *ngIf="star>3" style="text-align: center;" >{{ 'THANK YOU' | translate }}</div>
+  <a *ngIf="4>star" class="submitButton" style="    text-decoration: none;" href="mailto:contact@interactivecrypto.com?subject=Hello">{{ 'SENDUSFEEDBACK' | translate }}</a>
+  <div style="margin-top:3%;width:100%;"></div>
+
+
+
+</ion-content>

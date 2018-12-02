@@ -1,0 +1,172 @@
+page-class {
+  background: #fafafa;
+}
+    .titleContent{
+        padding-bottom: inherit;
+    }
+    .imgTitle{
+        color: #163939;
+        margin-left: 9%;
+        position: relative;
+        margin-top: 8%;
+        margin-bottom: -8%;
+        
+    }
+    .titleText{
+        padding-top: 10%;
+        padding-left: 6%;
+        font-size: 300%;
+        display: inline;
+        color: darkslategrey;
+            font-weight: 700;
+
+    }
+    .titlecolumn1{
+            margin-top: 5%;
+        background: antiquewhite;
+        
+    }
+  .blogcss{
+         span{
+        color:black;
+        }
+        li {
+            color:orange;
+            font-size: 130%;
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+        .pad{
+        padding :10px;
+        }
+        table{
+            width: 100%;
+            font-family:none;
+           margin-left: -1%;
+        }
+        td{
+            font-size: 85%;
+            font-weight: 100;
+            text-align: center;
+            background: orange;
+            border: solid white;
+        }
+        
+        .title{
+            color:orange;
+            font-size: 140%;
+        }
+        .text{
+            font-size: 120%;
+        }
+  }
+  .questions-link{
+    float: right;
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 20px;
+    margin-right: 20px;
+    height: 9%;
+    width: 32%;
+    box-shadow: 3px 2px 3px #888888;
+    /* border: 1px; */
+    /* border-style: solid; */
+
+  }
+  .quizbutton{
+    float: left;
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 20px;
+    margin-left: 10px;
+    height: 9%;
+    width: 32%;
+    box-shadow: 3px 2px 3px #888888;
+  }
+
+  .imgbutton{
+  
+    float: right;
+    margin-right: -15px;
+    height: 178%;
+    width: 10%;
+    margin-top: -16px;
+  }
+ 
+  .NextClassLabel{
+    font-size: 72%;   
+    text-align: center; 
+    margin-left: 1%;
+    padding-left: -26%;
+    font-weight: 900;
+  }
+  .startquiz{
+    
+    font-size: 72%;
+    margin-top: 3px;
+
+    }
+  @media screen and (max-height:550px)   {
+    .imgbutton{
+        float: right;
+        margin-right: -7px;
+        height: 246%;
+        width: 17%;
+        margin-top: -20%;
+        // float: right;
+        // margin-right: -10px;
+        // height: 246%;
+        // width: 17%;
+        // margin-top: -20px;
+      }
+      .NextClassLabel{
+        font-size: 72%;   
+        text-align: left; 
+        margin-left: 1%;
+        padding-left: -26%;
+       // font-weight: 900;
+      
+      }
+  }
+ 
+
+  
+  
+.platform-ios{  
+    .myBtn{
+        background: lightgray;
+      }
+      .imgbutton {
+          
+        float: right;
+        margin-right: -14px;
+        height: 144%;
+        width: 10%;
+        margin-top: -14px;
+    }
+    .NextClassLabel {
+        color: pink;
+        font-size: 72%;
+        text-align: center;
+        margin-left: -10%;
+        padding-left: -26%;
+        font-weight: 900;
+    }
+  @media screen and (max-height:670px) {
+     .imgbutton {
+        float: right;
+        margin-right: -15px;
+        height: 70%;
+        width: 10%;
+        margin-top: -16px;
+}
+ .NextClassLabel {
+     color: rgb(0, 0, 0);
+    font-size: 72%;
+    text-align: center;
+    margin-left: -10%;
+    padding-left: -26%;
+    font-weight: 900;
+}
+  }
+}

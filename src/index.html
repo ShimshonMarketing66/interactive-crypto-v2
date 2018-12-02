@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ionic App</title>
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4e8ef7">
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- cordova.js required for cordova apps (remove if not needed) -->
+  <script src="cordova.js"></script>
+  <link type="text/html" rel="stylesheet" href="chartiq_library/css/stx-chart.css">
+  <link type="text/html" rel="stylesheet"  href="chartiq_library/css/chartiq.css" media="screen"/> <!-- for the dark theme -->
+  <link type="text/html" rel="stylesheet"  href="chartiq_library/css/normalize.css" media="screen"/>
+  <link type="text/html" rel="stylesheet"  href="chartiq_library/css/perfect-scrollbar.css" media="screen"/>
+  <link  href="app/css/CIQ_Seed.css">
+
+  <!-- <script src="https://tradingcompare.com/ChartIQ/js/quoteFeedSimulator.js"></script>
+<script src="https://tradingcompare.com/ChartIQ/js/chartiq.js"></script> -->
+<script src="https://www.interactivecrypto.com/chart_iq_web/js/chartiq.js"></script>
+  <script src=" https://www.interactivecrypto.com/chart_iq_web/js/quoteFeedSimulator.js"></script>
+  <script src="https://www.interactivecrypto.com/chart_iq_web/js/thirdparty/iscroll.js"></script>
+<script src="https://www.interactivecrypto.com/chart_iq_web/js/plugin.js"></script>
+<script src="https://www.interactivecrypto.com/chart_iq_web/js/translations.js"></script>
+<script src="https://www.interactivecrypto.com/chart_iq_web/js/addOns.js"></script>
+<script src="https://www.interactivecrypto.com/chart_iq_web/js/thirdparty/object-observe.js"></script>
+
+<script src='https://www.interactivecrypto.com/chart_iq_web/js/thirdparty/perfect-scrollbar.jquery.js'></script>
+<script src="https://www.interactivecrypto.com/chart_iq_web/js/componentUI.js"></script>
+<script src="https://www.interactivecrypto.com/chart_iq_web/js/thirdparty/html2canvas.js"></script>
+
+<link rel="stylesheet" href="https://www.interactivecrypto.com/chart_iq_web/css/perfect-scrollbar.css" />
+<link rel="stylesheet" type="text/css" href="https://www.interactivecrypto.com/chart_iq_web/css/normalize.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="https://www.interactivecrypto.com/chart_iq_web/css/page-defaults.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="https://www.interactivecrypto.com/chart_iq_web/css/stx-chart.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="https://www.interactivecrypto.com/chart_iq_web/css/chartiq.css" media="screen" />
+
+<script src="https://www.interactivecrypto.com/chart_iq_web/js/components.js"></script>
+  <!-- un-comment this code to enable service worker
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('service worker installed'))
+        .catch(err => console.error('Error', err));
+    }
+  </script>-->
+
+  <link href="build/main.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Ionic's root component and where the app will load -->
+  <ion-app></ion-app>
+
+  <!-- The polyfills js is generated during the build process -->
+  <script src="build/polyfills.js"></script>
+
+  <!-- The vendor js is generated during the build process
+       It contains all of the dependencies in node_modules -->
+  <script src="build/vendor.js"></script>
+
+  <!-- The main bundle js is generated during the build process -->
+  <script src="build/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<ion-header id="header" >
+  <ion-navbar>
+    
+   <ion-title>
+      {{pageName.name}}&nbsp;Review   </ion-title>
+  </ion-navbar>
+</ion-header>
+
+  
+<ion-content #contentcryptoreview padding style="background: #2b2b2b;color:white;">
+
+   
+    
+        <div id="blog" style="padding-bottom: 27px;"></div>
+
+        
+<ion-grid style="padding-top: 10px;padding-bottom: 10px;">
+    <ion-row>
+        <ion-col style="text-align: end;" (click)="updateLike2('like')">
+          {{pageName.likes}}
+          <ion-icon  [style.color]="pageName?.Like ? '#3578E5' :'#9B9B9B'" name="thumbs-up1"></ion-icon>
+      </ion-col>
+      <ion-col (click)="updateLike2('unlike')">
+          {{pageName.unlikes}}
+
+          <ion-icon [style.color]="pageName?.unLike ? '#3578E5' :'#9B9B9B'" name="thumbs-down2"></ion-icon>
+      </ion-col>
+</ion-row>
+</ion-grid>
+   <!-- Comments -->
+   <div *ngFor="let comment of comments;let i =index">
+    <ion-grid *ngIf="GotAllComment" style="padding:0">
+      <ion-row style="padding-bottom: 5px;border-bottom:solid 1px #4a4a4a;">
+        <ion-col style="padding: 0px;" col-2>
+          <img [src]=comment.photoUrl class="imgForMainComment">
+        </ion-col>
+        <ion-col col-10 style="border-radius: 12px;padding-left: 7px;">
+          <div class="nameForMainComment">{{comment.name}}</div>
+          <div class="commentForMainComment">{{comment.comment}}</div>
+          <ion-grid style="padding: 0px;">
+            <ion-row style="padding: 0px;">
+              <ion-col style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px;" (click)="reply(i)">Reply</ion-col>
+              <ion-col col-2 *ngIf="comment.UserUid==user" style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px" (click)="clickeditComment(comment.comment,i,comment._id,false)">Edit</ion-col>
+              <ion-col col-3 *ngIf="comment.UserUid==user" style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px" (click)="DeleteComment(comment._id,i)">Delete</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+
+      <!-- subComment -->
+      <ion-row *ngFor="let subComment of comment.subComment;" style="padding-bottom: 5px;">
+        <ion-col col-3 style="padding:0;  ">
+          <img [src]=subComment.photoUrl height="30" class="imgForMainSubComment">
+        </ion-col>
+        <ion-col col-9 style="background:#eeeeee;border-radius: 12px;padding-left: 7px;">
+          <div class="nameForSubComment">{{subComment.name}}</div>
+          <div class="commentForSubComment">{{subComment.comment}}</div>
+          <ion-grid style="padding: 0px;">
+            <ion-row style="padding: 0px;">
+              <ion-col style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px;" (click)="reply(i)">Reply</ion-col>
+              <ion-col col-2 *ngIf="subComment.UserUid==user" style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px" (click)="clickeditComment(subComment.comment,i,comment._id,true,subComment._id)">Edit</ion-col>
+              <ion-col col-3 *ngIf="subComment.UserUid==user" style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px" (click)="deleteSubComment(comment._id,subComment._id,i)">Delete</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+
+      <ion-grid *ngIf="Reply && indexToReply == i" style="padding:0">
+        <ion-row style="padding-bottom: 5px;">
+
+          <ion-col>
+            <ion-row style="padding: 0px;">
+              <ion-col style="padding: 0px; background: white;    font-size: 16px;
+                height: 40px;
+                border-radius: 23px;     color: black;  ">
+                <ion-input #myInput [(ngModel)]="SubcommentText" id="newcomment" type="text" placeholder="Write your comment"></ion-input>
+              </ion-col>
+              <ion-col style="padding: 0px;" (tap)="AddSubComment(comment._id,i)" col-3>
+                <!-- <ion-icon (tap)="AddSubComment(comment._id,i)" style="margin:0px;color: #535453;font-size: 2.5em;    margin-top: 14%;" name="md-send"
+                    item-right primary></ion-icon> -->
+                <button style="background: #ffc046;
+                    color: #333333  ;
+                    font-weight: 500;
+                    border-radius: 23px;
+                    height: 40px;
+                    margin-left: 10px;
+                    width: 60px;">POST</button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-grid>
+
+    <ion-grid *ngIf="Edit  && indexToReply == i" style="padding:0">
+      <ion-row style="padding-bottom: 5px;">
+        <ion-col>
+          <ion-row  style="padding: 0px">
+            <ion-col style="padding: 0px; background: white;    font-size: 16px;
+                height: 40px;
+                border-radius: 23px;     color: black; ">
+              <ion-input #myInput2 [(ngModel)]="EditcommentText" id="editnewcomment" type="text" placeholder="Write your comment"></ion-input>
+            </ion-col>
+            <ion-col *ngIf="!isSubEdit" style="padding: 0px" col-2 (tap)="UpdateComment()">
+              <button style="background: #ffc046;
+                    color: #333333  ;
+                    font-weight: 500;
+                    border-radius: 23px;
+                    height: 40px;
+                    margin-left: 10px;
+                    width: 60px;">POST</button>
+            </ion-col>
+            <ion-col *ngIf="isSubEdit" style="padding: 0px" col-2 (tap)="UpdateSubComment()">
+              <button style="background: #ffc046;
+                      color: #333333  ;
+                      font-weight: 500;
+                      border-radius: 23px;
+                      height: 40px;
+                      margin-left: 10px;
+                      width: 60px;">POST</button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+  <ion-grid *ngIf="!Reply && !Edit && user">
+    <ion-row style="padding-bottom: 5px;">
+      
+      <ion-col>
+        <ion-row  style="padding: 0px">
+          <ion-col style="padding: 0px; background: white;    font-size: 16px;
+          height: 40px;
+          border-radius: 23px;     color: black; ">
+            <ion-input 
+              #myInput [(ngModel)]="commentText" id="newcomment" type="text" placeholder="Write your comment"></ion-input>
+          </ion-col>
+          <ion-col style="padding: 0px" col-2 (tap)="AddComment()">
+           
+              <button style="background: #ffc046;
+              color: #333333  ;
+              font-weight: 500;
+              border-radius: 23px;
+              height: 40px;
+              margin-left: 10px;
+              width: 60px;">POST</button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="spinner" *ngIf="!GotAllComment">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+  
+  
+   
+  
+</ion-content>
+

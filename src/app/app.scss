@@ -1,0 +1,38 @@
+@import "../theme/icons";
+.maintabs >div.tabbar{
+    opacity: 1;
+}
+.tabs-ios .tabbar{
+    
+    background: #000000;
+
+}
+.tabs-md .tabbar{
+    
+    background: #000000;
+
+}
+
+.tabs .tab-button[aria-selected=true] .tab-button-icon{
+    color:#ffc046!important;
+        }
+        .tabs .tab-button-icon{
+color:#ffffff;
+        }
+        .toolbar-background {
+            background-color:#222222;
+          }
+          .toolbar-title{
+            color: white;
+            text-align: center;
+        }
+        .back-button-icon {            color: white;
+        }
+        .settings-popup{  position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 80%;
+            height: 50%;}
+            input[type="text"]{
+                border: none;
+            }

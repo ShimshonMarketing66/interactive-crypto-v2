@@ -1,0 +1,36 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding  style="background:#2b2b2b;">
+  
+  <div style="text-align: center;font-size: 16pt;color: white;padding-top: 4px;"> {{ 'LOGIN' | translate }}</div>
+  
+  <button (click)="loginViaProvider('facebook')" class="Facebookbutton" ion-button>
+    <ion-icon class="facebookicon" ios="logo-facebook" md="logo-facebook"></ion-icon> Facebook</button>
+  <button (click)="loginViaProvider('google')" class="Googlebutton" ion-button>
+    <ion-icon class="googleicon" name="logo-googleplus"></ion-icon> Google</button>
+  <div style="color: white;text-align: center;margin-top: 15px"> ----------------- {{ 'OR' | translate }} ----------------- </div>
+  <ion-item>
+    <ion-label  stacked>{{ 'Email' | translate }}</ion-label>
+    <ion-input type="email" style="color:white" [(ngModel)]="email" placeholder="{{ 'ENTER EMAIL' | translate }}"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  stacked>{{ 'Password' | translate }}</ion-label>
+    <ion-input type="password" style="color:white" [(ngModel)]="password" placeholder="{{ 'ENTER PASSWORD' | translate }}"></ion-input>
+  </ion-item>
+
+  <button class="loginbutton" ion-button  (click)="loginViaEmail()">{{ 'LOGIN' | translate }}</button>
+  <div (click)="gotoForgotpassword()" class="forgotpassword">{{ 'Forgot your password' | translate }}?</div>
+
+  <div style="text-align: center;color: red;font-size: 14pt;">
+    {{error}}
+  </div>
+
+</ion-content>

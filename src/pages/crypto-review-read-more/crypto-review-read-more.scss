@@ -1,0 +1,185 @@
+page-crypto-review-read-more {
+    .spinner {
+        margin: 20px auto 0;
+        width: 70px;
+        text-align: center;
+      }
+      
+      .spinner > div {
+        width: 18px;
+        height: 18px;
+        background-color: #333;
+      
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+      }
+      
+      .spinner .bounce1 {
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+      }
+      
+      .spinner .bounce2 {
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+      }
+      
+      @-webkit-keyframes sk-bouncedelay {
+        0%, 80%, 100% { -webkit-transform: scale(0) }
+        40% { -webkit-transform: scale(1.0) }
+      }
+      
+      @keyframes sk-bouncedelay {
+        0%, 80%, 100% { 
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        } 40% { 
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+        }
+      }
+
+    .inputComment{
+        border:1px solid #535453;
+        background: #e0e0e0;
+        border-radius: 10px;
+        margin-top: 11px;
+        font-size: 14px;
+    }
+    .nameForSubComment{
+        font-weight: bold;
+        font-size: 15px;
+        color:white;    }
+    .commentForSubComment{
+        font-size: 12px;
+        color:white;    }
+    .imgForMainSubComment{
+        height: 40px;
+        border-radius: 100%;
+        width: 40px; 
+        margin-left: 26%;
+    }
+    .commentForMainComment{
+       
+        padding-top: 3px;
+        font-size: 14px;
+        color:white;    }
+    .nameForMainComment{
+        font-weight: bold;
+        font-size: 15px;
+
+    }
+
+.back{
+   filter: drop-shadow(3px 4px 1px #e3e3e3);    float: left;
+}
+.share{
+   display:inline; padding-left: inherit; filter: drop-shadow(3px 4px 1px #e3e3e3);
+}
+
+
+    .titlecolumn{
+         .titleText{
+    font-size: 200%;
+    display: inline;
+    color:white;} } 
+    .titleContent{
+        padding-bottom: inherit;
+    }
+    .imgInTitle{
+        margin-bottom: -4%;
+        
+    }
+    .titleText{
+        font-size: 100%;
+        display: inline;
+        color:white;    }
+    span{
+        color:white;
+        }
+        li {
+            color:orange;
+            font-size: 130%;
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+        .pad{
+        padding :10px;
+        }
+        table{
+            width: 100%;
+            font-family:none;
+            margin: auto;
+        }
+        td{
+            font-size: 120%;
+            font-weight: 100;
+            text-align: center;
+            background: #f5ecd6;
+            border: solid white;
+        }
+        
+        .title{
+            color:orange;
+            font-size: 170%;
+        }
+        .text{
+           
+            font-size: initial;
+        }
+     
+        .imgForMainSubComment{
+            height: 40px;
+            border-radius: 100%;
+            width: 40px; 
+        }
+        .commentForMainComment{
+            font-size: 12px;
+        }
+        .nameForMainComment{
+            font-weight: bold;
+            font-size: 19px;
+    
+        }
+        .imgForMainComment{
+            height: 50px;
+            border-radius: 100%;
+            width: 50px; 
+        }
+        .likesOfNews{
+            text-align: left;
+            position: absolute;
+            width: 50%;
+            right: 7px;
+            bottom: 0;
+            color:#b83d30
+        }
+        .commentsNumber{
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+        }
+        .classCol{
+            text-align: center;
+        }
+        .div1{
+    //        border-width: 1px;
+            border-radius: 100%;
+            width: 35px;
+            height: 35px;
+        }
+        .iconInDiv1{
+            margin-top: 17%;
+            text-align: center;
+            color: white;
+            font-size: 1.61em;
+        }
+        .iconshare{
+            width: 40px;
+            height: 40px;
+            margin-left: 10%;
+            font-size: 1.61em;
+         }
+}

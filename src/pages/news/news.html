@@ -1,0 +1,169 @@
+<!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" /> -->
+<!-- <style>
+  @import url('https://fonts.googleapis.com/css?family=Quicksand');
+</style> -->
+<ion-header id="header">
+  <ion-navbar>
+
+    <ion-title>
+      News
+    </ion-title>
+  </ion-navbar>
+  <div style="background: #2b2b2b;position: sticky;top: 0;z-index: 999;">
+
+
+    <div>
+      <ion-grid>
+        <ion-row style="white-space: nowrap;display: -webkit-inline-box;" 
+        [ngStyle]="selectedSegment == 'REVIEWS' && {'margin-left': '-30px'} || selectedSegment == 'WALLET'   && {'margin-left': '-135px'}  || selectedSegment == 'BROKER'   && {'margin-left': '-135px'}" >
+          <ion-col class="segments" (click)="changeSegment(NEWS)" [ngStyle]="selectedSegment == 'NEWS' && {'border-bottom': '1px solid #ffc046'}">NEWS</ion-col>
+          <ion-col class="segments" (click)="changeSegment(ACADEMY)" [ngStyle]="selectedSegment == 'ACADEMY' && {'border-bottom': '1px solid #ffc046'}">ACADEMY</ion-col>
+          <ion-col class="segments" (click)="changeSegment(REVIEWS)" [ngStyle]="selectedSegment == 'REVIEWS' && {'border-bottom': '1px solid #ffc046'}">REVIEWS</ion-col>
+          <ion-col class="segments" (click)="changeSegment(WALLET)" [ngStyle]="selectedSegment == 'WALLET' && {'border-bottom': '1px solid #ffc046'}">WALLET</ion-col>
+          <ion-col class="segments" (click)="changeSegment(BROKER)" [ngStyle]="selectedSegment == 'BROKER' && {'border-bottom': '1px solid #ffc046'}">BROKER</ion-col>
+
+
+
+        </ion-row>
+      </ion-grid>
+
+    </div>
+
+  </div>
+</ion-header>
+
+<ion-content style="background: #2b2b2b;">
+
+  <ion-slides (ionSlideDidChange)="onSlideChanged($event)" #mySlider  style="background: #2b2b2b;color:white;">
+    <ion-slide>
+      <div style="background: #2b2b2b;padding: 5px;">
+
+        <!-- <div class="titlecolumn"> -->
+        <!-- <ion-icon name="ios-paper-outline" style="color: gray;font-size: 3.2em;"></ion-icon>
+    <div class="title2">{{ 'NEWS' | translate }}</div>
+    -->
+        <!-- <span class=sexy_line></span>
+    <div>
+      <ion-searchbar id="searchBar" mode="md"  style="display: none" [(ngModel)]="myInput" (ionInput)="getItems(myInput)">
+
+      </ion-searchbar>
+    </div>
+    <div style="margin-bottom:-26px"></div>
+ -->
+
+
+        <!-- <div *ngFor="let new of News let i = index" class="formA">
+      
+      <div style="max-height: 82px;">
+        <img class="newsimg" (click)="readMore(i)" src={{new.Img}}>
+        <div class="datestyle">{{new.Date}}</div><br>
+        <div class="title1" (click)="readMore(i)">{{new.title}}</div>
+        <ion-grid style="padding:0"><ion-row style="padding:0">
+          <ion-col style="padding:0" >
+              <ion-icon style="height: 15px;color: #e2b000; " name="md-chatboxes"></ion-icon> 
+              <ion-icon style=" height: 15px;margin-left: 5%;color: #e2b000; " name="md-share"></ion-icon><b style="margin-left: 5%;">{{new.sharecounter}}</b>
+              <ion-icon style=" height: 15px;margin-left: 5%;color: #e2b000; " name="md-eye"></ion-icon> <b style="margin-left: 2%;">{{new.viewcounter}}</b>
+          </ion-col>
+          <ion-col style="padding:0" ><div (tap)="readMore(i)" class="ContinueToRead" style="background-color:inherit;float: right;padding-right: 2%;display: -webkit-inline-box;">{{label}}
+              <img alt="4" height="10" id="ContinueArrow" src="assets/img/11.png">
+            </div> </ion-col
+          ></ion-row></ion-grid>
+        
+          </div>
+      </div> -->
+        <div *ngFor="let new of News let i = index" style="color: #ffffff;font-size: 16px;text-align: start;">
+          <div style="padding-top: 5px;" (click)="readMore(i)">{{new.title}}</div>
+          <div (click)="readMore(i)" style="color:#9b9b9b;padding-bottom: 10px;border-bottom:solid 1px #4a4a4a;">{{new.Date}}</div>
+      <ion-grid>    <ion-row *ngIf="new?.isvip && authData?.user?.state != 'approved'" (click)="gotovip()" style=" background: linear-gradient(to right,  #ffc046 , #f76b1c);
+        font-size: 14px;"> <ion-col >Upgrade to Premium and enjoy an ad-free experience </ion-col> <ion-col col-3 style=" 
+          text-align: center;"> <div style="margin-top: 3px;     padding-top: 4px;    padding-bottom: 2px;   border: solid 2px; border-radius: 3px;">UPGRADE</div>  </ion-col>
+          </ion-row></ion-grid>
+        </div>
+
+        <!-- </div> -->
+        <!-- <div class="pagination">
+    <div class="paginationSon" (tap)="changePage(1)">&laquo;</div>
+    <div class="paginationSon" [ngStyle]="{'background': numPage1background}" (tap)="changePage(numPage1)">{{numPage1}}</div>
+    <div class="paginationSon" [ngStyle]="{'background': numPage2background}" (tap)="changePage(numPage2)">{{numPage2}}</div>
+    <div class="paginationSon" [ngStyle]="{'background': numPage3background}"  (tap)="changePage(numPage3)">{{numPage3}}</div>
+    <div class="paginationSon" *ngIf="!isOnLastPages">...</div>
+    <div class="paginationSon" (tap)="changePage(NumOfPages)"*ngIf="!isOnLastPages">{{NumOfPages}}</div>
+    <div class="paginationSon" (tap)="changePage(pageNum+1)"*ngIf="!isOnLastPages">Next >></div>
+  </div>-->
+      </div>
+
+    </ion-slide>
+    <!-- education -->
+    <ion-slide>
+        <div *ngFor="let new of classes let i = index" 
+        style="font-size: 16px;text-align: start;border-bottom: solid 1px #4a4a4a;background: #2b2b2b;color: #ffffff;">
+            <div *ngFor="let ne of new.texts;" style="padding: 7px;"  (click)="goToClass(new.classNum)">{{ne}}</div>
+            <div style="padding-left: 7px;">class {{new.classNum}} </div>
+            <ion-grid>    <ion-row *ngIf="new?.isvip && authData?.user?.state != 'approved'" (click)="gotovip()" style=" background: linear-gradient(to right,  #ffc046 , #f76b1c);
+              font-size: 14px;"> <ion-col >Upgrade to Premium and enjoy an ad-free experience </ion-col> <ion-col col-3 style=" 
+              text-align: center;"> <div style="margin-top: 3px;     padding-top: 4px;    padding-bottom: 2px;   border: solid 2px; border-radius: 3px;">UPGRADE</div>  </ion-col>
+              </ion-row></ion-grid>
+          </div>
+      
+    </ion-slide>
+    <ion-slide>
+      <ion-grid *ngFor="let item of cryptoreviews; let i = index;" style="background: #2b2b2b;border-bottom: solid 1px #4a4a4a;" >
+        <ion-row (click)="gotoReview(i)" style="height:50px;color: #ffffff;text-align: center;">
+        <ion-col col-2>
+            <img  [src]='item.Img' style="height:35px;">
+
+        </ion-col>
+        <ion-col style="text-align: start;padding-left: 5px;padding-top: 12px;">
+            {{item.name}}
+        </ion-col>
+        <ion-col col-3 style="color: #ffc046;border:solid 1px#ffc046;padding: 5px;margin-top: 7px;
+        height: 35px; ">  REVIEW
+        </ion-col></ion-row>
+           <ion-row *ngIf="item?.isvip && authData?.user?.state != 'approved'" (click)="gotovip()" style=" background: linear-gradient(to right,  #ffc046 , #f76b1c);
+           font-size: 14px;"> <ion-col >Upgrade to Premium and enjoy an ad-free experience </ion-col> <ion-col col-3 style=" 
+          text-align: center;"> <div style="margin-top: 3px;     padding-top: 4px;    padding-bottom: 2px;   border: solid 2px; border-radius: 3px;">UPGRADE</div>  </ion-col>
+          </ion-row>
+      </ion-grid>
+     
+    </ion-slide>
+    <ion-slide>
+      <ion-grid style="margin-top: 15px;">
+
+
+        <ion-row *ngFor="let item of items; let i = index">
+          <ion-col col-3 style="    margin-top: 10px;text-align: center">
+            <img style="height: 40px;" src="{{item.img}}">
+          </ion-col>
+          <ion-col style="text-align: left;    margin-top: 20px;">
+            {{item.name}}
+          </ion-col>
+          <ion-col  col-4>
+            <ion-row>    <ion-col (click)="walletreadreview(item.name)" style="color: #ffc046;padding: 5px;height: 30px;border: solid 1px  #ffc046;margin-top: 5px;"> REVIEW</ion-col>
+            </ion-row>
+            <ion-row>    <ion-col style="background: #ffc046;padding: 5px;height: 30px;margin-top: 5px;        "> <a style="color: #4a4a4a;" href="{{item.link}}">VISIT SITE</a></ion-col>
+            </ion-row>
+           </ion-col>
+
+        </ion-row>
+
+
+      </ion-grid>
+    </ion-slide>
+  <ion-slide >
+<ion-grid *ngFor="let brok of brokers; let i = index"    
+ style="font-size: 16px;text-align: center;border-bottom: solid 1px #4a4a4a;background: #2b2b2b;color: #ffffff;">
+  <ion-row >
+      <ion-col>          <img src="{{brok.img}}" style="height: 40px;">
+      </ion-col>
+    <ion-col>{{brok.name}}</ion-col>
+    <ion-col>
+       <ion-row>    <ion-col (click)="readReview(brok.name,'EN',brok.link)" style="color: #ffc046;padding: 5px;height: 35px;border: solid 1px  #ffc046;"> REVIEW</ion-col>
+       </ion-row>
+       <ion-row>    <ion-col style="background: #ffc046;padding: 5px;height: 30px;        "> <a style="color: #4a4a4a;" href="{{brok.link}}">VISIT SITE</a></ion-col>
+       </ion-row>
+      </ion-col>
+
+  </ion-row>
+</ion-grid>  </ion-slide>
+  </ion-slides>
+</ion-content>

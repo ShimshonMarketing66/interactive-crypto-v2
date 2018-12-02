@@ -1,0 +1,56 @@
+page-onboarding {
+    .slide-zoom{
+        padding-top: 5px;
+    }
+    .swiper-slide {
+          overflow-y: scroll;
+         display: block;
+    }
+    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+        top: 18%;
+    }
+        .swiper-pagination-bullet-active {
+         background: white;
+        }
+        .swiper-pagination-bullet{
+             background: white;
+        }
+.Onboardingbutton{
+    position: absolute;bottom: 100px;z-index:1000;
+}
+.imgonbording{
+    height: 400px;
+    width: 58%;
+    margin-top: 20%;
+    }
+@media screen and (max-height :500px){
+    .Onboardingbutton{
+    position: absolute;z-index:1000;bottom: -10px;
+    }
+    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+        bottom: -200px;
+    }
+    .imgonbording{
+        height: 400px;
+        width: 58%;
+        margin-top: 40px;
+        }
+}
+
+.Registration_buttons{
+    background: #f99f1e;
+    height: 30px;
+    width: 60%;
+    margin-top: 5%;
+}
+
+.Registration_buttons2{
+    border:solid 2px #f99f1e;
+    color: #f99f1e;
+    height: 30px;
+    width: 60%;
+    margin-top: 15%;
+    
+}
+
+} 

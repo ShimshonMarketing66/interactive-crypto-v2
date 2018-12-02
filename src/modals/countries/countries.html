@@ -1,0 +1,36 @@
+<ion-header style="background: #2b2b2b;color:white;">
+        <ion-navbar>
+        <ion-grid style="background: #2b2b2b;color:white;">
+        <ion-row >
+         <ion-col>
+       <ion-searchbar  *ngIf="type != 'timezone'" (ionInput)="getItems($event)" [(ngModel)]="myInput" [showCancelButton]="false" (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+    <ion-searchbar  *ngIf="type == 'timezone'" (ionInput)="getItemsTime($event)" [(ngModel)]="myInput" [showCancelButton]="false" (ionCancel)="onCancel($event)">
+        </ion-searchbar>
+    
+              </ion-col>
+         <ion-col col-3> 
+        <button (click)="closeModal()" style="height: 27px;   width: 100%;background: #00aeef;color: #ffffff;border-radius: 4px;">{{'Done'|translate}}</button >
+           </ion-col>
+             </ion-row>
+                </ion-grid>
+        </ion-navbar>
+
+</ion-header>
+<ion-content style="background: #2b2b2b;color:white;">
+
+
+        <ion-list   *ngIf="type != 'timezone'">
+                <ion-item *ngFor="let country of countries; let i = index" (click)="chooseCountry(i)">
+                        {{country[a]}} 	&nbsp;	&nbsp;({{country[b]}} )
+                </ion-item>
+
+        </ion-list>
+        
+        <ion-list *ngIf="type == 'timezone'" >
+                        <ion-item *ngFor="let time of timezonelist; let i = index" (click)="chooseTime(time)">
+                              {{time|key}}
+                        </ion-item>
+        
+                </ion-list>
+</ion-content>

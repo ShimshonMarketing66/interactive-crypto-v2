@@ -1,0 +1,25 @@
+page-chart {
+    .my-Class-Chart{
+        position: relative !important;
+      }
+      .rowchart{
+        height: 30px;
+        padding: 5px;
+        font-size: 16px;
+      }
+      .segments {
+        font-size: 16px;
+        padding: .5em 1em;
+       white-space: nowrap
+    }
+    .imgForMainComment{
+      height: 57px;
+      padding: 10px; 
+    }
+    ion-fab[bottom] {
+      bottom: 0px;
+      width: 100%}
+      .sticky{
+        position: sticky;
+      }
+}

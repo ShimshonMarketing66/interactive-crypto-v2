@@ -1,0 +1,37 @@
+page-termAndPrivacy{
+  
+       ol{
+        list-style-type: lower-alpha;
+       }
+        .pad{
+        padding :10px;
+        }
+        
+        .title{
+            color:orange;
+            font-size: 140%;
+        }
+        .text{
+            font-size: 125%;
+        }
+        .title2{
+            font-size: 143%;
+            color: gray;
+            font-weight: 500;   
+            position: absolute;
+            margin-top: 4%;
+            padding-left: 1%;
+        }
+        .titleabout{
+          height: 30px;
+          width: 70%;
+          color: gray;
+          margin-left: 5%;
+        }
+       
+    }
+    .ionicon{
+       
+        font-size: 330% !important;
+        color: gray;
+    }

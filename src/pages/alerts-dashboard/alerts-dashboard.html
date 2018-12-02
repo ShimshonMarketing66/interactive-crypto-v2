@@ -1,0 +1,161 @@
+<ion-header id="header" hideBackButton="false" mode="md">
+  <ion-navbar mode="md">
+     
+      <ion-title mode="md">
+          <ion-icon style="float: left;" *ngIf="isAlretsEmpty" (click)="goEdit()" name={{icon}}></ion-icon>
+          Alerts
+          <ion-icon (click)="addAlert()" mode="md" style="    float: right;
+          font-size: 150%;
+          font-weight: 700;
+          color: #e2b000;" name="md-add"></ion-icon>
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="isAlretsEmpty" style="background: #2b2b2b;">
+<!-- 
+  <ion-grid *ngFor="let alert of jsons2; let i = index">
+    <ion-row style="border: solid 1px gray;
+    
+    color: #ffffff;
+    background: #2b2b2b;
+    font-size: 130%;">
+      <ion-col>
+        <ion-row>
+          <div> <div style="display: -webkit-inline-box;" *ngIf="alert.Below != 0">{{alert.Below}}<b> {{alert.SignToSymbole}}</b>
+            <ion-icon style="padding: 5px;
+            padding-top: 0;
+            padding-bottom: 0;" name="ios-arrow-back"></ion-icon></div>
+            <b style="font-size: 120%;font-weight:700;">{{alert.FROMSYMBOL}}</b> <div style="display: -webkit-inline-box;" *ngIf="alert.Above != 100000000">
+            <ion-icon style="padding: 5px;
+             padding-top: 0;
+             padding-bottom: 0;" name="ios-arrow-back"></ion-icon> {{alert.Above}}<b> {{alert.SignToSymbole}}</b></div></div>
+        </ion-row>
+        <ion-row>
+          <div style="font-size: 140%;font-weight:700;" *ngIf="alert.Exchange!='undefined'">{{alert.Exchange}}</div>
+        </ion-row>
+        <ion-row *ngIf="alert.Persistent">{{ 'Persistent' | translate }}</ion-row>
+        <ion-row  *ngIf="!alert.Persistent">{{ 'OneTime' | translate }}</ion-row>
+      </ion-col>
+      <ion-col style="max-width: 55px;background:#f5f6f6 ">
+      
+       
+     
+      <div (click)="goToSetting(i)" style="text-align:center; color: #e2b000;
+      font-size: 135%; "> <ion-icon name="md-settings"></ion-icon></div>
+         
+      
+        
+      <div   style="text-align:center;
+      font-size: 135%; "><ion-icon name="md-remove"></ion-icon></div> 
+        <div  (click)="deletealert(alert._id)" style="text-align:center; color: #e2b000;
+        font-size: 135%; ">
+          <ion-icon name="md-trash"></ion-icon>
+        </div> 
+
+      </ion-col>
+    </ion-row>
+    <div style="padding-top:5px;"></div>
+  </ion-grid>
+  <ion-grid *ngFor="let alert of jsons; let i = index">
+    <ion-row style="border: solid 1px gray;
+    background: #1A2020;
+    opacity: 0.5;
+    color: #4e4143;
+    opacity: 0.5;
+    font-size: 130%;">
+      <ion-col>
+        <ion-row>
+          <div><div style="display: -webkit-inline-box;" *ngIf="alert.Below != 0">{{alert.Below}} <b>{{alert.SignToSymbole}}</b>
+            <ion-icon style="padding: 5px;
+            padding-top: 0;
+            padding-bottom: 0;" name="ios-arrow-back"></ion-icon></div>
+            <b (click)="shows('avi')" style="font-size: 120%;font-weight:700;">{{alert.FROMSYMBOL}} </b> <div style="display: -webkit-inline-box;" *ngIf="alert.Above != 100000000">
+              <ion-icon style="padding: 5px;
+               padding-top: 0;
+               padding-bottom: 0;" name="ios-arrow-back"></ion-icon> {{alert.Above}}<b> {{alert.SignToSymbole}}</b></div></div>
+          </ion-row>
+        <ion-row>
+          <div style="font-size: 140%;font-weight:700;" *ngIf="alert.Exchange!='undefined'">{{alert.Exchange}}</div>
+        </ion-row>
+        <ion-row *ngIf="alert.Persistent">{{ 'Persistent' | translate }}</ion-row>
+        <ion-row *ngIf="!alert.Persistent">{{ 'OneTime' | translate }}</ion-row>
+      </ion-col>
+      <ion-col style="max-width: 55px;background:#1A2020 ">
+        
+         
+       
+        <div  style="text-align:center; color: #4e4143;
+        font-size: 135%; "> <ion-icon name="md-settings"></ion-icon></div>
+           
+        
+          
+        <div   style="text-align:center;
+        font-size: 135%; "><ion-icon name="md-remove"></ion-icon></div> 
+          <div   style="text-align:center; color: #4e4143;
+          font-size: 135%; ">
+            <ion-icon name="md-trash"></ion-icon>
+          </div> 
+  
+        </ion-col>
+      <ion-icon (click)="goToSetting2(i)" style="
+      position: absolute;
+      color: #ffffff;
+      left:30%;
+      margin-top: 5%;
+      font-size: 300%;" name="md-settings"></ion-icon>
+      <ion-icon (click)="deletealert(alert._id)" style="
+      position: absolute;
+      color: #ffffff;
+      left: 57%;
+      margin-top: 5%;
+      
+      font-size: 300%;" name="md-trash"></ion-icon>
+    </ion-row>
+
+    <div style="padding-top:5px;"></div>
+  </ion-grid> -->
+  <ion-grid style="padding: 0;">
+      <ion-row *ngFor="let item of alljsons;let i=index"
+       style="border-bottom: 2px solid #4a4a4a;background: #2b2b2b;color: #ffffff; height: 80px;font-size: 18px;">
+  
+        <ion-col col-10 [style.color]="item.isAppend ? '#707070':'#ffffff'">
+            <ion-row style="height:  20px;"></ion-row>
+                    <ion-row  >
+            <div *ngIf="item.Below">{{item.Below}} &nbsp;
+              < &nbsp;&nbsp;
+            </div>
+            <div>{{item.FROMSYMBOL}}/{{item.TOSYMBOL}} &nbsp;
+              < &nbsp;</div>
+            <div *ngIf="item.Above != 100000000">{{item.Above}} </div>
+          </ion-row>
+          <ion-row style="height:  20px;">{{item?.date}}</ion-row>
+
+        </ion-col>
+        <ion-col *ngIf="!edit"   style="text-align: -webkit-right;" >
+  
+          <ion-toggle mode="md"  style="background-color:#2b2b2b;position: absolute;    top: 20px;right: 0;" color="secondary" (ionChange)="clicktoggle(!$event.checked,item._id,i)"  [checked]="!item.isAppend"></ion-toggle>
+        </ion-col>
+       <ion-col *ngIf="edit" (click)="deleteAlert(item._id,i)" style="text-align: -webkit-right;">
+            <ion-icon name="ios-trash-outline" style="background-color:#2b2b2b;color:white;margin-top: 20px;font-size: 29px" ></ion-icon>
+        </ion-col> 
+      </ion-row>
+
+      <div *ngIf="!edit" style="text-align: center;color: #9b9b9b;" (click)="addAlert()">
+          <div  style="font-size: 24px;">  <ion-icon name="md-add-circle"></ion-icon></div>
+          <div>  {{'Add Alert'|translate}}</div>
+      </div>
+    </ion-grid>
+</ion-content>
+<ion-content *ngIf="!isAlretsEmpty" style="background: #2b2b2b;" padding>
+  <div style="text-align: center;color:#9b9b9b;margin-top: 30%;margin-bottom: 10%;font-size: 14px;">No Alerts    </div>
+    <div  style="text-align: center;color:#f6ae22;margin-top: 30px;font-size: 18px;">BE IN THE KNOW
+
+      </div>
+      <div style="text-align: center;color:#ffffff;margin-top: 10px;font-size: 12px;">Create custom alerts for your holdings</div>
+     <div style="text-align: center;    margin-bottom: -13px;">
+        <img height="250" src="assets/imgs/alerts_empty.png">
+      </div>
+      <div> 
+      <button (click)="addAlert()" style="background: #ffc046;color:#4a4a4a;width: 80%;margin-left: 10%;height: 35px;text-align: center;font-weight: 600;">  <ion-icon name="notifications"></ion-icon>  Add Your First Alert</button></div>
+</ion-content>

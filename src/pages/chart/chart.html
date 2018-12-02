@@ -1,0 +1,306 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+
+      {{coin.name}}
+      <span (click)="addcoin()" style="color: #ffc046;    float: right;    font-weight: 300;  ">
+        {{coin.pair | tosymbol}}
+        &nbsp;
+        <ion-icon style="color: #ffffff;" name="md-add"></ion-icon>
+      </span>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content #chartpage style="background: #2b2b2b;color: #ffffff;" (ionScroll)="onScroll($event)">
+ 
+ 
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2>
+        <img src="{{coin?.img}}" height="30">
+      </ion-col>
+      <ion-col style="    margin-top: 7px;font-weight: 500;font-size: 16px;"> {{coin?.price}}
+      </ion-col>
+      <ion-col style="    margin-top: 7px;" [style.color]="coin?.change24 > 0 ? '#05bd9b':'#ef4364'"> {{coin?.change24}}%
+      </ion-col>
+      <ion-col (click)="addtoWhachlist(coin?.pair,coin?.isWatchlist)" col-1><span style="padding-left: 3px;">
+          <ion-icon *ngIf="coin.isWatchlist" name="md-star" style="color: #ffc046;    font-size: 27px;"          ></ion-icon> 
+          <ion-icon  *ngIf="!coin.isWatchlist" name="star-o" ></ion-icon>               </span>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row style="height: 35px;
+    font-size: 14px;
+    text-align: center;">
+      <ion-col style="    margin-top: 6px; "> Updated: {{date}} </ion-col>
+      <ion-col col-3>
+        <a href={{cryptoProvider.tradeLink}}>
+          <button style="    border-radius: 4px;width: 60px;background: #05bd9b;color: #ffffff;padding: 5px;height: 30px;">TRADE</button>
+        </a>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+  <div style="background: #2b2b2b;position: sticky;top: 0;z-index: 999;">
+
+    <div>
+      <ion-grid>
+        <ion-row style="white-space: nowrap;display: -webkit-inline-box;">
+          <ion-col class="segments" (click)="changeSegment(CHART)" [ngStyle]="selectedSegment == 'CHART' && {'border-bottom': '1px solid #ffc046','color': '#ffc046'}">CHART</ion-col>
+          <ion-col class="segments" (click)="changeSegment(REVIEW)" [ngStyle]="selectedSegment == 'REVIEW' && {'border-bottom': '1px solid #ffc046','color': '#ffc046'}">REVIEW</ion-col>
+          <ion-col class="segments" (click)="changeSegment(NEWS)" [ngStyle]="selectedSegment == 'NEWS' && {'border-bottom': '1px solid #ffc046','color': '#ffc046'}">NEWS</ion-col>
+          <ion-col class="segments" (click)="changeSegment(CHAT)" [ngStyle]="selectedSegment == 'CHAT' && {'border-bottom': '1px solid #ffc046','color': '#ffc046'}">CHAT</ion-col>
+
+
+
+        </ion-row>
+      </ion-grid>
+
+    </div>
+
+  </div>
+  <div [ngSwitch]="selectedSegment" swipeSegment [tabsList]="allSegments" [(currentTab)]="selectedSegment" (tabChanged)="changeSegment($event)"
+    class="swipe-area">
+    <div *ngSwitchCase="CHART">
+        <div class="my-Class-Chart" style="height: 350px;">
+            <chart-ui #chartUi class="ciq-night"></chart-ui>
+          </div>
+      <div class="rowchart">Volume: {{coin?.volume}}</div>
+      <div class="rowchart">Market Cap: {{coin?.marketcap}}</div>
+      <div class="rowchart">High: {{coin?.high}}</div>
+      <div class="rowchart">Low: {{coin?.low}}</div>
+      <div class="rowchart">Price {{coin?.name}}</div>
+      <div class="rowchart">Currency: {{coin?.name}}</div>
+      <div class="rowchart">Open {{coin?.open}}</div>
+      <div class="rowchart">Close {{coin?.close}}</div>
+      <div class="rowchart">Day High {{coin?.high24}}</div>
+      <div class="rowchart">Day Change:{{coin?.change24}}% </div>
+      <div class="rowchart">Volume: {{coin?.volume}}</div>
+      <ion-grid style="text-align: center;">
+        <ion-row style="border-top: solid 1px #4a4a4a;    height: 30px;
+        ">
+          <ion-col>
+            <div style="font-size: 15px;font-weight: 500;text-align: center;">Social Sentiment:</div>
+
+          </ion-col>
+        </ion-row>
+        <ion-row style="border-bottom: solid 1px #4a4a4a; ">
+          <ion-col (click)="updateLike('like')" style="text-align: -webkit-center;">
+            <div style="text-align: center;width: 80px;height: 30px;padding-top: 6px;border:solid 1px#05bd9b;color:#05bd9b;border-radius: 3px;  "
+              [style.background]="coin?.Like ?'#05bd9b':'#2b2b2b'" [style.color]="coin?.Like?' #ffffff':'#05bd9b'">
+              BULLISH</div>
+            <div style="color: #9b9b9b;text-align: center;font-size:11px;margin-top:7px;"> {{coin?.likes}}% &nbsp;Bullish</div>
+          </ion-col>
+          <ion-col (click)="updateLike('unlike')" style="text-align: -webkit-center;">
+            <div style="text-align: center;width: 80px;height: 30px;padding-top: 6px;border:solid 1px#ef4364;color:#ef4364;border-radius: 3px;"
+              [style.background]="coin?.unLike ?'#ef4364':'#2b2b2b'" [style.color]="coin?.unLike?' #ffffff':'#ef4364'">
+              BEARISH</div>
+            <div style="color: #9b9b9b;text-align: center;font-size:11px;margin-top:7px;">{{coin?.unlikes}}% &nbsp; Bearish</div>
+          </ion-col>
+        </ion-row>
+        <ion-row (click)="addTransaction()"style="border-bottom: solid 1px #4a4a4a;">
+          <ion-col style="color:#ffc046;    height: 45px;
+          margin-top: 10px;  ">
+            <ion-icon name="portfolio-gold"></ion-icon> &nbsp;Add to Portfolio</ion-col>
+        </ion-row>
+        <ion-row  (click)="gotoalert()" style="border-bottom: solid 1px #4a4a4a;">
+          <ion-col style="color:#ffc046;    height: 45px;
+          margin-top: 10px;  ">
+            <ion-icon name="alerts-gold"></ion-icon> &nbsp;Create Alert
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div *ngSwitchCase="REVIEW">
+      <div *ngIf="anyReview"></div>
+        <div padding style="color:white" [innerHtml]="textreview"></div>
+     <div *ngIf="!anyReview"  style="text-align: center;
+     margin-top: 35px;">No review available for this coin</div>
+    </div>
+    <div *ngSwitchCase="NEWS">
+      <div *ngIf="anyNews" style="background: #2b2b2b;padding: 5px;">
+      <div *ngFor="let new of newsarry let i = index" style="color: #ffffff;font-size: 16px;text-align: start;">
+        <div style="padding-top: 5px;" (click)="readMore(i)">{{new.title}}</div>
+        <div (click)="readMore(i)" style="color:#9b9b9b;padding-bottom: 10px;border-bottom:solid 1px #4a4a4a;">{{new.Date}}</div>
+      </div>    </div>
+      <div *ngIf="!anyNews" style="text-align: center;
+      margin-top: 35px;">No news available for this coin </div>
+    </div>
+    <div *ngSwitchCase="CHAT"  >
+       <!-- Comments -->
+   <div *ngFor="let comment of comments;let i =index">
+    <ion-grid *ngIf="GotAllComment" style="padding:0">
+      <ion-row style="padding-bottom: 5px;border-bottom:solid 1px #4a4a4a;">
+        <ion-col style="padding: 0px;" col-2>
+          <img [src]=comment.photoUrl class="imgForMainComment">
+        </ion-col>
+        <ion-col col-10 style="border-radius: 12px;padding-left: 7px;">
+          <div class="nameForMainComment">{{comment.name}}</div>
+          <div class="commentForMainComment">{{comment.comment}}</div>
+          <ion-grid style="padding: 0px;">
+            <ion-row style="padding: 0px;">
+              <ion-col style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px;" (click)="reply(i)">Reply</ion-col>
+              <ion-col col-3 *ngIf="comment.UserUid==authData?.user?._id" style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px" (click)="clickeditComment(comment.comment,i,comment._id,false)">Edit</ion-col>
+              <ion-col col-3 *ngIf="comment.UserUid==authData?.user?._id" style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px" (click)="DeleteComment(comment._id,i)">Delete</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+
+      <!-- subComment -->
+      <ion-row *ngFor="let subComment of comment.subComment;" style="padding-bottom: 5px;">
+        <ion-col col-3 style="padding:0;  ">
+          <img [src]=subComment.photoUrl height="30" class="imgForMainSubComment">
+        </ion-col>
+        <ion-col col-9 style="background:#eeeeee;border-radius: 12px;padding-left: 7px;">
+          <div class="nameForSubComment">{{subComment.name}}</div>
+          <div class="commentForSubComment">{{subComment.comment}}</div>
+          <ion-grid style="padding: 0px;">
+            <ion-row style="padding: 0px;">
+              <ion-col style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px;" (click)="reply(i)">Reply</ion-col>
+              <ion-col col-3 *ngIf="subComment.UserUid==authData?.user?._id" style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px" (click)="clickeditComment(subComment.comment,i,comment._id,true,subComment._id)">Edit</ion-col>
+              <ion-col col-3 *ngIf="subComment.UserUid==authData?.user?._id" style="padding: 0px;color:#e2b000;font-size:12px;padding-top: 4px" (click)="deleteSubComment(comment._id,subComment._id,i)">Delete</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+
+      <ion-grid *ngIf="Reply && indexToReply == i" style="padding:0;position: sticky;
+      bottom: 0;
+      background: #2b2b2b;">
+        <ion-row style="padding-bottom: 5px;">
+
+          <ion-col>
+            <ion-row style="padding: 0px;">
+              <ion-col style="padding: 0px; background: white;    font-size: 16px;
+                height: 40px;
+                border-radius: 23px;     color: black;  ">
+                <ion-input #myInput [(ngModel)]="SubcommentText" id="newcomment" type="text" placeholder="Write your comment"></ion-input>
+              </ion-col>
+              <ion-col style="padding: 0px;" (tap)="AddSubComment(comment._id,i)" col-3>
+                <!-- <ion-icon (tap)="AddSubComment(comment._id,i)" style="margin:0px;color: #535453;font-size: 2.5em;    margin-top: 14%;" name="md-send"
+                    item-right primary></ion-icon> -->
+                <button style="background: #ffc046;
+                    color: #333333  ;
+                    font-weight: 500;
+                    border-radius: 23px;
+                    height: 40px;
+                    margin-left: 10px;
+                    width: 60px;">POST</button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-grid>
+
+    <ion-grid *ngIf="Edit  && indexToReply == i" style="padding:0;position: sticky;
+    bottom: 0;
+    background: #2b2b2b;">
+      <ion-row style="padding-bottom: 5px;">
+        <ion-col>
+          <ion-row  style="padding: 0px">
+            <ion-col style="padding: 0px; background: white;    font-size: 16px;
+                height: 40px;
+                border-radius: 23px;     color: black; ">
+              <ion-input #myInput2 [(ngModel)]="EditcommentText" id="editnewcomment" type="text" placeholder="Write your comment"></ion-input>
+            </ion-col>
+            <ion-col *ngIf="!isSubEdit" style="padding: 0px" col-3 (tap)="UpdateComment()">
+              <button style="background: #ffc046;
+                    color: #333333  ;
+                    font-weight: 500;
+                    border-radius: 23px;
+                    height: 40px;
+                    margin-left: 10px;
+                    width: 60px;">POST</button>
+            </ion-col>
+            <ion-col *ngIf="isSubEdit" style="padding: 0px" col-3 (tap)="UpdateSubComment()">
+              <button style="background: #ffc046;
+                      color: #333333  ;
+                      font-weight: 500;
+                      border-radius: 23px;
+                      height: 40px;
+                      margin-left: 10px;
+                     ">POST</button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+  <ion-fab  bottom  id="mychat">
+    
+
+  <ion-grid *ngIf="!Reply && !Edit && authData?.user?._id" style="position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background: #2b2b2b;">
+    <ion-row style="padding-bottom: 5px;">
+      
+      <ion-col>
+        <ion-row  style="padding: 0px">
+          <ion-col style="padding: 0px; background: white;    font-size: 16px;
+          height: 40px;
+          border-radius: 23px;     color: black; ">
+            <ion-input 
+              #myInput [(ngModel)]="commentText" id="newcomment" type="text" placeholder="Write your comment"></ion-input>
+          </ion-col>
+          <ion-col style="padding: 0px" col-3 (tap)="AddComment()">
+           
+              <button style="background: #ffc046;
+              color: #333333  ;
+              font-weight: 500;
+              border-radius: 23px;
+              height: 40px;
+              margin-left: 10px;
+              width: 60px;">POST</button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+    </ion-fab>
+  <div class="spinner" *ngIf="!GotAllComment">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+
+    <ion-grid *ngIf="!authData?.user?._id" (click)="openLogin()">
+      <ion-row style="padding-bottom: 5px;">
+      
+        <ion-col>
+          <ion-row  style="padding: 0px">
+            <ion-col style="padding: 0px; background: white;    font-size: 16px;
+            height: 40px;
+            border-radius: 23px;     color: black; ">
+              <ion-input 
+                #myInput [(ngModel)]="commentText" id="newcomment" type="text" placeholder="Write your comment" disabled></ion-input>
+            </ion-col>
+            <ion-col style="padding: 0px" col-3 >
+             
+                <button style="background: #ffc046;
+                color: #333333  ;
+                font-weight: 500;
+                border-radius: 23px;
+                height: 40px;
+                margin-left: 10px;
+                width: 60px;">POST</button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+   
+  
+    </div>
+  </div>
+
+</ion-content>

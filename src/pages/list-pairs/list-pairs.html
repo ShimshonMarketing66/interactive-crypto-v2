@@ -1,0 +1,60 @@
+
+<ion-header  >
+
+  <ion-navbar>
+    <ion-title>Add Coin</ion-title>
+  </ion-navbar>
+  <ion-grid style="background: #2b2b2b;">
+      <ion-row>
+              <ion-col style="margin: auto;">
+                      <ion-searchbar (ionInput)="getItems($event)" [(ngModel)]="myInput"
+                              [showCancelButton]="false" (ionCancel)="onCancel($event)">
+                      </ion-searchbar>
+              </ion-col>
+              <ion-col col-3 style="margin: auto;padding:3px;">
+                      <button (click)="navCtrl.pop()" style="height: 27px;   width: 100%;background: #00aeef;color: #ffffff;border-radius: 4px;">Cancel</button>
+              </ion-col>
+      </ion-row>
+</ion-grid>
+</ion-header>
+
+
+<ion-content  *ngIf="!isAlerts" style="background: #2b2b2b;">
+   
+  <ion-grid   *ngFor="let item of allpairs; let i = index" style="background: #2b2b2b;color:#ffffff;border-bottom: solid 1px #4a4a4a;height: 50px;    padding-bottom: 10px;" >
+    <ion-row  style="height: 40px; text-align: center;">
+        <ion-col col-2>
+            <img src="{{item?.img}}" height="30">
+                  </ion-col>
+      <ion-col style="height: 40px; text-align: start;margin-top: 5px;">
+            {{item?.name}} &nbsp;  ( {{item?.pair| split}} )
+                  </ion-col>
+      
+   
+      <ion-col col-1 (click)="addtoWhachlist(item.pair,item.isWatchlist,i)">                <ion-icon *ngIf="item.isWatchlist" name="md-star" style="color: #ffc046; font-size: 25px;"          ></ion-icon> 
+        <ion-icon  *ngIf="!item.isWatchlist" name="star-o" ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll  (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-content *ngIf="isAlerts" style="background: #2b2b2b;">
+   
+    <ion-grid   *ngFor="let item of allpairs; let i = index" style="background: #2b2b2b;color:#ffffff;border-bottom: solid 1px #4a4a4a;height: 50px;    padding-bottom: 10px;" >
+      <ion-row (click)="gotoalert(item?.pair)" style="height: 40px; text-align: center;">
+          <ion-col col-2>
+              <img src="{{item?.img}}" height="30">
+                    </ion-col>
+        <ion-col style="height: 40px; text-align: start;margin-top: 5px;">
+  {{item?.pair| split}}
+        </ion-col>
+        <ion-col col-1>              <ion-icon  style="font-size:30px; " name="ios-arrow-forward-outline" item-right></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-infinite-scroll  (ionInfinite)="$event.waitFor(doInfinite())">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>

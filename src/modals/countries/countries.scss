@@ -1,0 +1,23 @@
+page-countries{
+    .toolbar-background {
+        background-color:black;
+      }
+      .toolbar-title{
+        color: white;
+      }
+      .searchbar-md .searchbar-search-icon {
+        left: 87%;
+        top: 4px;}
+        .searchbar-md .searchbar-input{
+          border-radius: 4px;
+          height:27px;
+          padding: 6px 5px;
+                }
+                .toolbar .searchbar-md {
+                  padding: 0px;
+              }
+              .item{
+                background: #2b2b2b;
+                color: white;
+              }
+}

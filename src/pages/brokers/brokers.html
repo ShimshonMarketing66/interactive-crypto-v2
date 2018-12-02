@@ -1,0 +1,49 @@
+<ion-header id="header" hideBackButton="false">
+    <ion-navbar>
+        <button ion-button menuToggle enable-menu-with-back-views="true">
+                <ion-icon name="menu"></ion-icon>
+              </button>
+        <ion-title>
+            <img src="assets/logo.png" height="37" class="imgLogo">
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding >
+    <div style="padding-top:5%"></div>
+       
+    <div style="color:#e2ad43; text-align: center;padding-top:5%; font-size:130%;">{{title}}</div>
+    <span class=sexy_line></span>
+    <ion-grid style="height: 150px;background:#e4e4e4;margin-top: 5%;" *ngFor="let item of items; ">
+        <ion-row >
+            <ion-col class="brokerimg" (click)="readReview(item.name,language,item.link)"><img height="40px;" src="{{item.img}}">
+                <div  style="margin-top: 5%;color: #e2ad43;font-size: 90%;">{{readreview}}</div>
+            </ion-col>
+
+            <ion-col>
+                <div class="titlecol">User score</div>
+                <div class="brokermin">{{item.userscore}}</div>
+                
+            </ion-col>
+            <ion-col >
+                <div class="titlecol">Min Deposit</div> 
+                <div class="brokermin">{{item.minDeposit}}$</div>              
+            </ion-col>
+
+        </ion-row>
+        <ion-row>
+            <ion-col>  <div> <img src="assets/img/brokers5.png" height="20px" class="coinsupport"></div></ion-col>
+            <ion-col><div>
+                    <div (click)="trackButton(item.name)">
+                        <a href="{{item.link}}">
+                                <button class="buttonsite">
+                                   {{gosite}}<ion-icon style=" margin-left: 4px;" name="md-arrow-dropright">
+                                        </ion-icon>
+        
+                                </button>
+                            </a>
+                    </div>
+                </div></ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

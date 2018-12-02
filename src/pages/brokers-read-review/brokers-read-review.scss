@@ -1,0 +1,46 @@
+page-brokers-read-review {
+    span{
+        color:black;
+        }
+        li {
+            color:orange;
+            font-size: 130%;
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+        .pad{
+        padding :10px;
+        }
+        table{
+            width: 100%;
+            font-family:none;
+            margin: auto;
+        }
+        td{
+            font-size: 120%;
+            font-weight: 100;
+            text-align: center;
+            background: #f5ecd6;
+            border: solid white;
+        }
+        .buttonsite{
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #21cc62;
+            height: 36px;
+            width: 50%;
+            
+            font-size: 130%;
+        }
+        .title{
+            color:orange;
+            font-size: 170%;
+        }
+        .text{
+           
+            font-size: initial;
+        }
+}

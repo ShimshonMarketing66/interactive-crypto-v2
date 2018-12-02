@@ -1,0 +1,233 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../assets/fonts/icomoon.eot?jsv5lr');
+  src:  url('../assets/fonts/icomoon.eot?jsv5lr#iefix') format('embedded-opentype'),
+    url('../assets/fonts/icomoon.ttf?jsv5lr') format('truetype'),
+    url('../assets/fonts/icomoon.woff?jsv5lr') format('woff'),
+    url('../assets/fonts/icomoon.svg?jsv5lr#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@mixin makeIcon($arg, $val) {
+  .#{$arg}:before ,
+  .ion-ios-#{$arg}:before ,
+  .ion-ios-#{$arg}-outline:before ,
+  .ion-md-#{$arg}:before ,
+  .ion-md-#{$arg}-outline:before {
+  content: $val;
+  font-size:21px;
+  }
+  }
+  @mixin makeIcon2($arg, $val) {
+    .#{$arg}:before ,
+    .ion-ios-#{$arg}:before ,
+    .ion-ios-#{$arg}-outline:before ,
+    .ion-md-#{$arg}:before ,
+    .ion-md-#{$arg}-outline:before {
+    content: $val;
+    font-size:13px;
+    }
+    }
+@include makeIcon(alerts-gold,'\e902');
+@include makeIcon(coin-gold,'\e906');
+@include makeIcon(icon-camera,'\f030');
+@include makeIcon2(sort,'\f0dc');
+@include makeIcon(news-gold,'\e90a');
+@include makeIcon(bars,'\f0c9');
+@include makeIcon(star-o,'\f006');
+@include makeIcon(thumbs-up1,'\f164');
+@include makeIcon(thumbs-down2,'\f165');
+@include makeIcon(portfolio-gold,'\e90e');
+
+// @include makeIcon(star,'\f005');
+
+
+.icon-plus:before {
+  content: "\f067";
+}
+.icon-search:before {
+  content: "\f002";
+}
+.icon-star:before {
+  content: "\f005";
+}
+.icon-star-o:before {
+  content: "\f006";
+}
+.icon-check:before {
+  content: "\f00c";
+}
+.icon-trash-o:before {
+  content: "\f014";
+}
+.icon-camera:before {
+  content: "\f030";
+}
+.icon-pencil:before {
+  content: "\f040";
+}
+.icon-plus-circle:before {
+  content: "\f055";
+}
+.icon-twitter:before {
+  content: "\f099";
+}
+.icon-facebook:before {
+  content: "\f09a";
+}
+.icon-facebook-f:before {
+  content: "\f09a";
+}
+.icon-bars:before {
+  content: "\f0c9";
+}
+.icon-navicon:before {
+  content: "\f0c9";
+}
+.icon-reorder:before {
+  content: "\f0c9";
+}
+.icon-sort:before {
+  content: "\f0dc";
+}
+.icon-unsorted:before {
+  content: "\f0dc";
+}
+.icon-sort-desc:before {
+  content: "\f0dd";
+}
+.icon-sort-down:before {
+  content: "\f0dd";
+}
+.icon-sort-asc:before {
+  content: "\f0de";
+}
+.icon-sort-up:before {
+  content: "\f0de";
+}
+.icon-linkedin:before {
+  content: "\f0e1";
+}
+.icon-angle-left:before {
+  content: "\f104";
+}
+.icon-angle-right:before {
+  content: "\f105";
+}
+.icon-thumbs-up:before {
+  content: "\f164";
+}
+.icon-thumbs-down:before {
+  content: "\f165";
+}
+.icon-google:before {
+  content: "\f1a0";
+}
+.icon-telegram:before {
+  content: "\f2c6";
+}
+.icon-alerts-gold .path1:before {
+  content: "\e902";
+  color: rgb(255, 192, 70);
+}
+.icon-alerts-gold .path2:before {
+  content: "\e903";
+  margin-left: -0.8662109375em;
+  color: rgb(0, 0, 0);
+}
+.icon-alerts .path1:before {
+  content: "\e904";
+  color: rgb(0, 0, 0);
+}
+.icon-alerts .path2:before {
+  content: "\e905";
+  margin-left: -0.87109375em;
+  color: rgb(255, 255, 255);
+}
+.icon-coin-gold .path1:before {
+  content: "\e906";
+  color: rgb(255, 192, 70);
+}
+.icon-coin-gold .path2:before {
+  content: "\e907";
+  margin-left: -0.7333984375em;
+  color: rgb(0, 0, 0);
+}
+.icon-coin .path1:before {
+  content: "\e908";
+  color: rgb(0, 0, 0);
+}
+.icon-coin .path2:before {
+  content: "\e909";
+  margin-left: -0.7421875em;
+  color: rgb(255, 255, 255);
+}
+.icon-news-gold .path1:before {
+  content: "\e90a";
+  color: rgb(255, 192, 70);
+}
+.icon-news-gold .path2:before {
+  content: "\e90b";
+  margin-left: -1.125em;
+  color: rgb(0, 0, 0);
+}
+.icon-news .path1:before {
+  content: "\e90c";
+  color: rgb(0, 0, 0);
+}
+.icon-news .path2:before {
+  content: "\e90d";
+  margin-left: -1.1201171875em;
+  color: rgb(255, 255, 255);
+}
+.icon-portfolio-gold .path1:before {
+  content: "\e90e";
+  color: rgb(255, 192, 70);
+}
+.icon-portfolio-gold .path2:before {
+  content: "\e90f";
+  margin-left: -1.2919921875em;
+  color: rgb(0, 0, 0);
+}
+.icon-portfolio .path1:before {
+  content: "\e910";
+  color: rgb(0, 0, 0);
+}
+.icon-portfolio .path2:before {
+  content: "\e911";
+  margin-left: -1.3203125em;
+  color: rgb(255, 255, 255);
+}
+.icon-settings-gold .path1:before {
+  content: "\e912";
+  color: rgb(255, 192, 70);
+}
+.icon-settings-gold .path2:before {
+  content: "\e913";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-Settings .path1:before {
+  content: "\e900";
+  color: rgb(0, 0, 0);
+}
+.icon-Settings .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}

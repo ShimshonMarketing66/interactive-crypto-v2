@@ -1,0 +1,107 @@
+<ion-header style="background: #222222;color: white;">
+
+  <ion-navbar>
+    <ion-title>settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background: #222222;color: white;">
+  <ion-grid style="padding:0;">
+    <ion-row style="border-bottom:1px solid #4a4a4a;height: 65px;    padding-top: 5px;
+  padding-left: 5px;">
+  <ion-col col-2><img style="width: 50px;
+    height: 50px;" [src]="countryimg" alt=""></ion-col>
+      <ion-col style="height: 42px;font-size:18px;    white-space: nowrap;">{{'Profile Settings'|translate}}</ion-col>
+      <ion-col col-2 style="text-align: end;">
+      <!-- <ion-icon style="font-size:30px; " name="ios-arrow-forward-outline" item-right></ion-icon> -->
+      </ion-col>
+    </ion-row>
+    <ion-row (click)="presentListtimezone()" style="border-bottom:1px solid #4a4a4a;height: 57px">
+      <ion-col style="height: 42px;font-size:18px;    white-space: nowrap;">
+        <ion-row>
+          <ion-col style="color:#9d9d9d;font-size: 11px;height: 15px;text-align: start;padding-left: 5px;">Time Zone </ion-col>
+        </ion-row>
+        <ion-row >
+          <ion-col>{{authData?.user?.countryData?.timezone}}</ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-2 style="text-align: end;">
+        <ion-icon style="font-size:30px; " name="ios-arrow-forward-outline" item-right></ion-icon>
+      </ion-col>  </ion-row> 
+      <ion-row style="border-bottom:1px solid #4a4a4a;height: 57px">
+        <ion-col style="height: 42px;font-size:18px;    white-space: nowrap;">
+          <ion-row>
+            <ion-col style="color:#9d9d9d;font-size: 11px;height: 15px;text-align: start;padding-left: 5px;">Currency  </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>USD  </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col col-2 style="text-align: end;">
+          <ion-icon style="font-size:30px; " name="ios-arrow-forward-outline" item-right></ion-icon>
+        </ion-col>
+      </ion-row> 
+      <ion-row style="border-bottom:1px solid #4a4a4a;height: 57px">
+        <ion-col style="height: 42px;font-size:18px;    white-space: nowrap;">
+          <ion-row>
+            <ion-col style="color:#9d9d9d;font-size: 11px;height: 15px;text-align: start;padding-left: 5px;">Language </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>English (En) </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col col-2 style="text-align: end;">
+          <ion-icon style="font-size:30px; " name="ios-arrow-forward-outline" item-right></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="rateus()" style="border-bottom:1px solid #4a4a4a;height:50px;">
+        <ion-col style="height: 42px;font-size:18px;    white-space: nowrap;">
+          <ion-row>
+            <ion-col style="padding-top: 8px;">Rate Us </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col col-2 style="text-align: end;">
+          <ion-icon style="font-size:30px; " name="ios-arrow-forward-outline" item-right></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row style="border-bottom:1px solid #4a4a4a;height:70px;">
+        <ion-col style="height: 65px;font-size:18px;    white-space: nowrap;">
+          <ion-row>
+            <ion-col style="color:#9d9d9d;font-size: 11px;height: 15px;text-align: start;padding-left: 5px;">Follow Us: </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col col-2><a href="https://www.facebook.com/interactivecrypto/"><img src="assets/imgs/followus/facebook.png"  height="40"> </a></ion-col>
+            <ion-col col-2><a href="https://www.linkedin.com/company/interactivecryp/"><img src="assets/imgs/followus/linkedin.png" height="40"></a> </ion-col>
+            <ion-col col-2> <a href="https://t.me/cryptocurrenciesnews1"><img src="assets/imgs/followus/telegram.png"  height="40"></a></ion-col>
+            <ion-col col-2><a href="https://twitter.com/Interactivecryp"><img src="assets/imgs/followus/twitter.png"  height="40"></a> </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="gotoAboutus()" style="border-bottom:1px solid #4a4a4a;height: 50px;    padding-top: 5px;
+      padding-left: 5px;">
+          <ion-col style="height: 42px;font-size:18px;    white-space: nowrap;">About Us</ion-col>
+          <ion-col col-2 style="text-align: end;">
+          <ion-icon style="font-size:30px; " name="ios-arrow-forward-outline" item-right></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row (click)="gototermsTermAndPrivacy()" style="border-bottom:1px solid #4a4a4a;height: 50px;    padding-top: 5px;
+        padding-left: 5px;">
+            <ion-col style="padding-top: 8px;height: 42px;font-size:18px;    white-space: nowrap;">Terms and Conditions              </ion-col>
+            <ion-col col-2 style="text-align: end;">
+            <ion-icon style="font-size:30px; " name="ios-arrow-forward-outline" item-right></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row (click)="logoutUser()" style="border-bottom:1px solid #4a4a4a;height:50px;    padding-top: 5px;
+          padding-left: 5px;">
+              <ion-col style="padding-top: 8px;height: 42px;font-size:18px;    white-space: nowrap;">Sign Out
+
+                </ion-col>
+              <ion-col col-2 style="text-align: end;">
+              <ion-icon style="font-size:30px; " name="ios-arrow-forward-outline" item-right></ion-icon>
+              </ion-col>
+            </ion-row>
+
+  </ion-grid>
+</ion-content>

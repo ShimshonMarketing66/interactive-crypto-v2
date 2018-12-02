@@ -1,0 +1,74 @@
+<ion-header id="header" hideBackButton="false" mode="md">
+    <ion-navbar mode="md">
+        <ion-title mode="md">
+            HISTORY        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-4 style="text-align: left;margin: auto;">
+                Action
+            </ion-col>
+            <ion-col col style="text-align: center;margin: auto;">
+                Profit<br>(Usd)
+            </ion-col>
+            <ion-col col style="text-align: center;margin: auto;">
+                Open<br>Close
+            </ion-col>
+            <ion-col col style="text-align: center;margin: auto;">
+                Gain
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid style="padding: unset;">
+        <ion-row  style="padding-top: 10px;padding-bottom: 10px;" *ngFor="let transaction of TransactionsClosed; let i = index" [ngStyle]="i%2==0 && {'background': '#eeeeee'} || i%2!=0 && {'background': '#ffffff '}">
+            <ion-col  col-4 style="text-align: left;padding: unset;">
+                <ion-grid style="padding:unset;padding-left: 4px;">
+                    <ion-row>
+                        <ion-col style="font-weight: 900;padding: unset;text-align: left;font-size: 13px;">
+                           BUY &nbsp; {{transaction.From}} / {{transaction.To}}
+                         </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col style="padding: unset;text-align: left;font-size: 12px;">
+                          Price &nbsp;{{transaction.Price|toFixeNumber}}  &nbsp;  {{transaction.signtosymbol}} 
+                         </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col style="padding: unset;text-align: left;font-size: 12px;">
+                            Anounte &nbsp;{{transaction.Amount}}
+                         </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col style="padding: unset;text-align: left;font-size: 8px;">
+                            {{transaction.Date}}&nbsp; - &nbsp;{{transaction.ToDate}}
+                         </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+            <ion-col col style="text-align: center;margin: auto;font-weight: 900;" [ngStyle]="transaction.ProfitUSD < 0 && {'color':'red'}|| transaction.ProfitUSD>0 && {'color':'#32db64'}">
+                {{transaction.ProfitUSD|toFixeNumber}} $
+            </ion-col>
+            <ion-col col style="text-align: center;margin: auto;font-size: 10px;">
+                <div>
+                   <b>{{transaction.CostInUSD|toFixeNumber}}</b> &nbsp;<span style="font-style: italic;">open</span>
+                </div>
+                <div style="font-size: 10px;">
+                    <b>{{transaction.ClosedPrice|toFixeNumber}}</b>&nbsp;<span style="font-style: italic;">close</span>
+                </div>
+            </ion-col>
+            <ion-col col style="text-align: center;margin: auto;">
+                {{transaction.GainPrricePercent|toFixeNumber}}%
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+
+
+
+</ion-content>

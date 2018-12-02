@@ -1,0 +1,191 @@
+
+<ion-header id="header" hideBackButton="false" mode="md">
+  <ion-navbar mode="md">
+   
+    <ion-title mode="md">
+      <ion-grid> <ion-row>
+          <ion-col>PORTFOLIO</ion-col>
+          <ion-col col-2><ion-icon style="  font-size: 150%;
+            font-weight: 700;
+            color: #e2b000;"  (click)=changeShowMode() [name]="ToSignSymbol == 'USD'? 'logo-usd' : 'logo-bitcoin'"></ion-icon></ion-col>
+          <ion-col col-1><ion-icon (click)="addTransaction()"  style=" 
+            font-size: 150%;
+            font-weight: 700;
+            color: #e2b000;" name="md-add"></ion-icon></ion-col>          
+      </ion-row></ion-grid>
+      
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+    <div style="background: #2b2b2b;position: sticky;top: 0;z-index: 999;">
+
+
+        <div>
+          <ion-grid>
+            <ion-row style="white-space: nowrap;"  >
+              <ion-col class="segments" (click)="changeSegment(PORTFOLIO)" [ngStyle]="selectedSegment == 'PORTFOLIO' && {'border-bottom': '1px solid #ffc046'}">PORTFOLIO</ion-col>
+              <ion-col class="segments" (click)="changeSegment(HISTORY)" [ngStyle]="selectedSegment == 'HISTORY' && {'border-bottom': '1px solid #ffc046'}">HISTORY</ion-col>
+            </ion-row>
+          </ion-grid>
+    
+        </div>        </div>
+        <ion-slides (ionSlideDidChange)="onSlideChanged($event)" #mySlider  style="background: #2b2b2b;color:white;">
+            <ion-slide>
+              <div style="background: #2b2b2b;padding: 5px;">
+  
+
+  <ion-grid style="background-color:#2b2b2b">
+    <ion-row  >
+      <ion-col >
+      <div style="text-align: center;color:#00c500;font-size: 200%;font-weight: 900;">{{PortfolioValue|toFixeNumber}}{{SignToSignSymbol}}</div>
+      <div style="text-align: center;">CURRENT PORTFOLIO VALUE</div></ion-col>
+    </ion-row>
+    <ion-row style="font-size: 80%;text-align: center;">
+      <ion-col>
+        <div>{{TotalCost|toFixeNumber}}{{SignToSignSymbol}}</div>
+        <div>Total COST</div>
+      </ion-col>
+      <ion-col (tap)="changeTotalProfitShow()" >
+          <div class="BorderUpright ">{{TotalProfit|toFixeNumber}}{{IsProfitShowChange && "%" || !IsProfitShowChange && SignToSignSymbol }}</div>
+          <div >Total Profit</div>
+        </ion-col>
+     
+    </ion-row>
+  </ion-grid>
+
+<ion-grid >
+<div style="border: 1px solid #cccac1"></div>
+ <ion-row>
+    <ion-col >
+    </ion-col>
+    <ion-col (click)="share()" style="text-align: end;margin: auto;">
+      <div class="button_share_and_add">
+          <ion-icon style="    font-size: 25px;"  ios="ios-share-alt" name="md-share-alt"></ion-icon>
+      </div>
+  </ion-col>
+</ion-row>
+</ion-grid> 
+
+<ion-list>
+    <ion-item-sliding #slidingItem *ngFor="let transaction of Transactions; let i = index">
+      <ion-item style="background:#2b2b2b;padding-left: 0;">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+                <div style="color:white;font-size: 16px;">{{transaction.From}}</div>
+                <div style="font-size: 11px;color:white;">Current Value</div>
+                <div style="color:white;font-size: 16px;font-weight: 600;display: inline-flex;">
+                    <div  [ngStyle]="{'background': transaction.BackgroundColor}">
+                        {{transaction?.CurrentPrice|toFixeNumber}}{{SignToSignSymbol}}&nbsp;
+                    </div>
+                  <div [ngStyle]="transaction.CurrentChange24H<0 && {'background': 'red'} ||transaction.CurrentChange24H>0 && {'background': 'green'}">
+                      ({{transaction?.CurrentChange24H|toFixeNumber}}%)
+                  </div>
+                </div>  
+            </ion-col>
+            <ion-col  style="text-align:right;text-align: right;font-size: 12px;"(click)="changeTotalProfitShow()">
+                <div><span style="color:white;font-size: 15px;"[ngStyle]="{'background': transaction.BackgroundColor}">{{transaction?.Gain|toFixeNumber}}{{IsProfitShowChange && "%" || !IsProfitShowChange && SignToSignSymbol }}</span></div>
+                <div style="font-weight: 600;font-size:12px;color:white;" >
+                  COST
+                  <div style="color:white;display:inline;font-size: 13px;">&nbsp;({{transaction?.AmountMultCost|toFixeNumber}}{{SignToSignSymbol}})</div>
+              </div>
+                <div style="color:white;font-size: 14px;">{{transaction?.Amount|toFixeNumber}}&nbsp;{{transaction.From}}&nbsp;/&nbsp;{{ToSignSymbol}}&nbsp;{{transaction?.GainValue|toFixeNumber}}{{SignToSignSymbol }}</div> 
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-options    style= "border-left: 1px solid;color:black;" side="right" style="padding-bottom: 4px;background: #887373; " >
+     
+        <button class="backgroundbuton" 
+     (click)="CloseTransaction(i,slidingItem)"><ion-icon class="tailleicon" name="list-box"></ion-icon><br><br>
+          Close Transaction
+        </button>
+   
+
+    
+        <button  class="backgroundbuton" (click)="EditTransaction(i,slidingItem)">  <ion-icon class="tailleicon"  name="add-circle"></ion-icon><br><br>
+          Edit
+        </button>
+  
+        <button class="backgroundbuton" (click)="DeleteTransaction(i,slidingItem)">  <ion-icon class="tailleicon" name="trash"></ion-icon><br><br>
+          Delete Transaction</button>
+     
+       
+      </ion-item-options>
+    </ion-item-sliding>
+    
+  </ion-list>
+  </div>
+</ion-slide>
+  <ion-slide>
+      <ion-grid>
+          <ion-row>
+              <ion-col col-4 style="text-align: left;margin: auto;">
+                  Action
+              </ion-col>
+              <ion-col col style="text-align: center;margin: auto;">
+                  Profit<br>(Usd)
+              </ion-col>
+              <ion-col col style="text-align: center;margin: auto;">
+                  Open<br>Close
+              </ion-col>
+              <ion-col col style="text-align: center;margin: auto;">
+                  Gain
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  
+      <ion-grid style="padding: unset;">
+          <ion-row  style="padding-top: 10px;padding-bottom: 10px;" *ngFor="let transaction of TransactionsClosed; let i = index" [ngStyle]="i%2==0 && {'background': '#4a4a4a'} || i%2!=0 && {'background': '#2b2b2b'}">
+              <ion-col  col-4 style="text-align: left;padding: unset;">
+                  <ion-grid style="padding:unset;padding-left: 4px;">
+                      <ion-row>
+                          <ion-col style="font-weight: 900;padding: unset;text-align: left;font-size: 13px;">
+                             BUY &nbsp; {{transaction.From}} / {{transaction.To}}
+                           </ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col style="padding: unset;text-align: left;font-size: 12px;">
+                            Price &nbsp;{{transaction.Price|toFixeNumber}}  &nbsp;  {{transaction.signtosymbol}} 
+                           </ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col style="padding: unset;text-align: left;font-size: 12px;">
+                              Anounte &nbsp;{{transaction.Amount}}
+                           </ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col style="padding: unset;text-align: left;font-size: 8px;">
+                              {{transaction.Date}}&nbsp; - &nbsp;{{transaction.ToDate}}
+                           </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-col>
+              <ion-col col style="text-align: center;margin: auto;font-weight: 900;" [ngStyle]="transaction.ProfitUSD < 0 && {'color':'red'}|| transaction.ProfitUSD>0 && {'color':'#32db64'}">
+                  {{transaction.ProfitUSD|toFixeNumber}} $
+              </ion-col>
+              <ion-col col style="text-align: center;margin: auto;font-size: 10px;">
+                  <div>
+                     <b>{{transaction.CostInUSD|toFixeNumber}}</b> &nbsp;<span style="font-style: italic;">open</span>
+                  </div>
+                  <div style="font-size: 10px;">
+                      <b>{{transaction.ClosedPrice|toFixeNumber}}</b>&nbsp;<span style="font-style: italic;">close</span>
+                  </div>
+              </ion-col>
+              <ion-col col style="text-align: center;margin: auto;">
+                  {{transaction.GainPrricePercent|toFixeNumber}}%
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  
+  
+  </ion-slide> 
+</ion-slides>
+</ion-content>
+
+
+
+

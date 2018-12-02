@@ -1,0 +1,58 @@
+page-alert {
+    .popInput1{
+        position: relative;
+        left: 10%;
+        border: none;
+        width: 80%;
+        height: 9%;
+        text-align: center;
+        margin-top: 5%;
+        box-shadow: 2px 2px 2px 2px #888888;
+    }
+    ion-select {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        max-width: 100%!important;
+      }
+      .select-md {
+        padding: 0px 0px 0px 0px;
+        padding-left: 5px;
+      }
+      .select-ios {
+        padding: 0px 0px 0px 0px;
+        padding-left: 5px;
+      }
+      .item{
+        padding-left: 0; 
+        width:50%;
+      }
+      .input-wrapper{
+      overflow: unset;}
+      .input2 {
+        -webkit-appearance: textfield;
+        background-color: white;
+        -webkit-rtl-ordering: logical;
+        cursor: text;
+        padding: 1px;
+        border-width: 2px;
+        border-style: inset;
+        border-color: initial;
+        border-image: initial;
+    }
+    .AlertButton{
+      font-size: 20px;
+      color: white;
+      background: #E2B000;
+      text-align: center;
+      margin-top: 8%;
+      padding: 6px;
+      width: 40%;
+      left: 30%;
+      position: relative;
+      font-weight: 900;
+    }
+    .text-input{
+      background: #2b2b2b;
+      }
+}

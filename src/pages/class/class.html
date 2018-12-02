@@ -1,0 +1,25 @@
+<ion-header hideBackButton="false" >
+        <ion-navbar>
+          
+         <ion-title>
+           Academy
+         </ion-title>
+        </ion-navbar>
+      </ion-header>
+      
+<ion-content style="background: #2b2b2b;color:white;">
+    <div class="titlecolumn1">
+    <div class="titleText">{{ 'Class' | translate }}# {{num1}}</div>
+  </div>
+ 
+  <!-- <ion-icon style="font-size: 2.2em;" name="ios-arrow-back" (click)="back()">Back</ion-icon> -->
+      <div class="blogcss" style="padding: 5%" id="blog" ></div>
+      <button class="questions-link myBtn" *ngIf="num1!=13" style="margin-bottom: 5%;" (click)="goToQuizz(num1)" >
+        <div class="NextClassLabel">{{ 'NextClass' | translate }}  ! </div>
+         <!-- <img class="imgbutton" src="img/11.png">   -->
+      </button>
+      <button style="opacity:0;" class="quizbutton myBtn" (click)="goToqusten(num1,quiznum)">
+            <div class="startquiz"> Start Quiz</div>
+      </button>
+   
+</ion-content>

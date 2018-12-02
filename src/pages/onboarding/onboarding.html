@@ -1,0 +1,45 @@
+
+
+<ion-content contentTop style="background:#2b2b2b;">
+<ion-slides  pager (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <img src="assets/imgs/logo.png" style="margin-top: 5% ;" >
+      <div style="color:white;font-size: 90%;font-weight:500;text-align: center;">{{ 'Join_crypto_Revolution' | translate }}</div>
+
+    </ion-slide>
+    <ion-slide>
+      <div style="color:#f99f1e;font-size: 120%;font-weight:500;text-align: center;margin-top: 5% ; ">{{ 'TRADE' | translate }}</div>
+      <div style="color:white;font-size: 90%;font-weight:500;text-align: center; ">{{ 'Create and customize your wachlist' | translate }}</div>
+      <img src="assets/imgs/onboarding2.png"  class="imgonbording">
+    </ion-slide>
+    <ion-slide>
+        <div style="color:#f99f1e;font-size: 120%;font-weight:500;text-align: center; margin-top: 5% ;">{{ 'ACTIVE' | translate }}</div>
+        <div style="color:white;font-size: 90%;font-weight:500;text-align: center; ">{{ 'Set_custom_alerts' | translate }}</div>
+        <div style="color:white;font-size: 90%;font-weight:500;text-align: center; ">{{ 'and_push_notifications' | translate }}</div>
+        
+      <img src="assets/imgs/onboarding3.png"   class="imgonbording">
+    </ion-slide>
+    <ion-slide>
+        <div style="color:#f99f1e;font-size: 120%;font-weight:500;text-align: center;margin-top: 5% ; ">{{ 'SHARE' | translate }}</div>
+        <div style="color:white;font-size: 90%;font-weight:500;text-align: center; ">{{ 'Stay_up_to_date_with_our_easily' | translate }}</div>
+        <div style="color:white;font-size: 90%;font-weight:500;text-align: center; ">{{ 'shareable news and reviews' | translate }}</div>
+        
+      <img src="assets/imgs/onboarding4.png"   class="imgonbording" >
+    </ion-slide>
+    <ion-slide>
+      <div style="color:#f99f1e;font-size: 120%;font-weight:500;text-align: center;margin-top: 5% ; ">{{ 'CONNECT' | translate }}</div>
+      <div style="color:white;font-size: 90%;font-weight:500;text-align: center; ">{{ 'Talk to other crypto enthusiasts and join the crypto community' | translate }}</div>
+      
+    <img src="assets/imgs/onboarding5.png"   class="imgonbording">
+  </ion-slide>
+  </ion-slides>
+    <ion-grid class="Onboardingbutton">
+        <ion-row>
+          <ion-col style="text-align: center;" >
+         <div><button class="Registration_buttons2" (click)="gotoLogIn()"    >{{ 'LOG_IN' | translate }}</button></div>   
+         <div> <button class="Registration_buttons" (click)="gotoSignIn()"  >{{ 'SIGN_UP' | translate }}</button> </div>
+          <div style="color:#f99f1e;margin-top: 5%;" (click)="skipToDashboard()">{{ 'Continue_as_a_Guest' | translate }}</div> 
+          </ion-col>
+        </ion-row>
+      </ion-grid> 
+</ion-content>

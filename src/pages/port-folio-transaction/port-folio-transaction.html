@@ -1,0 +1,160 @@
+
+<ion-header id="header" hideBackButton="false" mode="md">
+  <ion-navbar mode="md">
+
+    <ion-title mode="md">
+        Add Transaction    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content style="background:#2b2b2b;color:white;">
+  <ion-grid >
+
+    <!-- exchange -->
+    <!-- <ion-row style="padding: 7px;border-bottom: 1px solid #6f6f6f;">
+      <ion-col col-1></ion-col>
+      <ion-col col-6 style="text-align: left;color:#d2d2d2">Exchange</ion-col>
+     
+      <ion-col col-4 style="text-align: right;">
+        <select style="-webkit-appearance: none;text-align-last: right;background: #535453;color: #ffffff;border-color: rgb(83, 84, 83);" [(ngModel)]="Exchange"  (change)="onSelectExchange()">
+          <option *ngFor="let exchange of Exchanges" [attr.selected]="exchange == Exchange ? Exchange : null">{{exchange}}</option>
+        </select>
+      </ion-col>
+    </ion-row> -->
+
+    <!-- trading pair -->
+    <ion-row style="padding: 7px;border-bottom: 1px solid #6f6f6f;">
+        <ion-col col-1></ion-col>
+      <ion-col col-6 style="text-align: left;color:#d2d2d2">Trading Pair</ion-col>
+      <ion-col col-4 style="text-align: right;">
+        <select style="-webkit-appearance: none;text-align-last: right;color: #ffffff;background:#2b2b2b;border: none;" [(ngModel)]="Pair" (change)="onSelectPair()">
+          <option *ngFor="let pair of Pairs" [attr.selected]="Pair==pair ? Pair : null">{{pair  }}</option>
+        </select>
+      </ion-col>
+    </ion-row>
+
+    <!--  price -->
+    <ion-row style="padding: 7px;border-bottom: 1px solid #6f6f6f;">
+        <ion-col col-1></ion-col>
+      <ion-col col-6 style="text-align: left;color:#d2d2d2">Price</ion-col>
+      <ion-col style="text-align: left;">
+        <input style="width: 67%;background: border-box;border: none;color: white;text-align: right;" type="number" [(ngModel)]="Price" [placeholder]="CurrenPrice">
+        <label style="width: 27%;color: white;position: absolute;right: 0;">{{signtosymbol}}</label>
+      </ion-col>
+    </ion-row>
+
+    <!--  price for USD -->
+    <ion-row style="padding: 7px;border-bottom: 1px solid #6f6f6f;" *ngIf="PriceBTC" [@enterAnimation]>
+        <ion-col col-1></ion-col>
+      <ion-col col-6 style="text-align: left;color:#d2d2d2">Price (BTC)</ion-col>
+      <ion-col  style="text-align: left;">
+        <input style="width: 67%;background: border-box;border: none;color: white;text-align: right;" type="number" [(ngModel)]="PriceBTCInput" [placeholder]="PriceBTCPlaceholder">
+        <label style="width: 27%;color: white;position: absolute;right: 0;">Ƀ</label>
+      </ion-col>
+    </ion-row>
+
+     <!--  price for BTC -->
+    <ion-row style="padding: 7px;border-bottom: 1px solid #6f6f6f;" *ngIf="PriceUSD" [@enterAnimation]>
+        <ion-col col-1></ion-col>
+      <ion-col col-6 style="text-align: left;color:#d2d2d2">Price (USD)</ion-col>
+      <ion-col  style="text-align: left;">
+        <input style="width: 67%;background: border-box;border: none;color: white;text-align: right;" type="number" [(ngModel)]="PriceUSDInput" [placeholder]="PriceUSDPlaceholder">
+        <label style="width: 27%;color: white;position: absolute;right: 0;">$</label>
+      </ion-col>
+    </ion-row>
+
+       <!--  Amount -->
+    <ion-row style="padding: 7px;border-bottom: 1px solid #6f6f6f;" >
+        <ion-col col-1></ion-col>
+      <ion-col col-6 style="text-align: left;color:#d2d2d2">Amount Bought</ion-col>
+      <ion-col col-4 style="text-align: left;">
+        <input style="text-align: right;background: border-box;border: none;color: white;width: 100%;position: absolute;right: 0;    padding: unset;" type="number" [(ngModel)]="Amount" placeholder="1">
+      </ion-col>
+    </ion-row>
+
+           <!--  date -->
+           <ion-row style="padding: 7px;border-bottom: 1px solid #6f6f6f;">
+              <ion-col col-1></ion-col>
+            <ion-col col-6 style="text-align: left;color:#d2d2d2">Date</ion-col>
+            <ion-col col-4 style="text-align: left;">
+                <ion-datetime style="color: white;padding: unset;text-align: right;" (ionChange)="changeDate()" displayFormat="YYYY/MM/DD" [(ngModel)]="DateTransaction" [min]="2009/01/01" [max]="DateNow"></ion-datetime>
+            </ion-col>
+          </ion-row>
+  </ion-grid>
+
+    <!-- alert -->
+
+  <ion-list  style="background:#2b2b2b;color:white;">
+
+      <ion-item  style="background:#2b2b2b;color:white;">
+        <ion-label>Alert</ion-label>
+        <ion-toggle [(ngModel)]="isAlert"></ion-toggle>
+      </ion-item></ion-list>
+  <ion-grid *ngIf="isAlert" [@enterAnimation] style="margin-left: 10%;overflow : hidden;background:#2b2b2b;color:white;">
+    <ion-row>
+      <ion-col col-2 style="margin-top: 9px">
+        {{ 'Above' | translate }}
+      </ion-col>
+      <ion-col col-1 style="margin-top: 11px">
+        <ion-icon style="color:#e2b000;" name="ios-arrow-up-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-1 style="margin-top: 11px" >
+        <ion-checkbox [(ngModel)]="AboveBox"></ion-checkbox>
+      </ion-col>
+      <ion-col>
+        <ion-input  [(ngModel)]="Above"  type="number" disabled={{!AboveBox}} style="border-bottom: 1px solid #e6e6e6;width: 80%;"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row >
+      <ion-col col-3 style="margin-top: 9px">
+        {{ 'Current' | translate }}
+      </ion-col>
+      <ion-col col-1 >
+        <ion-checkbox [(ngModel)]="AboveBox" style="opacity:0"></ion-checkbox>
+      </ion-col>    
+      <ion-col >
+        <!-- <input type="checkbox" [(ngModel)]="AboveBox" style="opacity:0"> -->
+        <ion-input readonly="true"  [(ngModel)]="Price"  type="number" placeholder="{{CurrenPrice}}" style="border-bottom: 1px solid #e6e6e6;width: 80%;"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-2 style="margin-top: 9px;">
+       {{ 'Below' | translate }}
+      </ion-col>
+      <ion-col col-1 style="margin-top: 11px;">
+        <ion-icon style="color:#e2b000;" name="ios-arrow-down-outline"></ion-icon>
+      </ion-col>
+      <ion-col col-1 style="margin-top: 11px;">
+        <ion-checkbox [(ngModel)]="BelowBox"></ion-checkbox>
+      </ion-col>
+      <ion-col>
+        <ion-input  [(ngModel)]="Below"  type="number" disabled={{!BelowBox}} style="border-bottom: 1px solid #e6e6e6;width: 80%;"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid style="background:#2b2b2b;color:white;">
+    <!-- note -->
+    <ion-row style="padding: 7px">
+      <ion-col col-1></ion-col>
+    <ion-col col-2 style="text-align: left;margin-top:5px;">Note</ion-col>
+   
+    <ion-col col style="text-align: left;border: solid 1px #535453;">
+        <ion-input  style="width: 80%;border: none;text-align: right;" type="text" [(ngModel)]="Note" placeholder="Enter Your Note"></ion-input>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<div style="text-align:center;margin-top: 15px;color:red">
+ {{error}}
+</div>
+
+<div style="text-align:center;margin-top:15px;">
+  <button (click)="addTransaction()" style="color: white;border-radius: 11px;height: 41px;background: #e2b000;font-weight: bold;" type="button">{{SUBMITBUTTON}}</button>
+
+</div>
+
+</ion-content>
+

@@ -1,0 +1,226 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+        <ion-icon  style="float: left;" *ngIf="selectedSegment == 'WATCHLIST' && !cryptoProvider.isWatchlistEmpty" (click)="goEdit()" name={{icon}}></ion-icon>
+
+      Coin <span (click)="addcoin()"  style="color: #ffc046;    float: right;    font-weight: 300;  ">
+      USD&nbsp;  <ion-icon  style="color: #ffffff;" name="search"></ion-icon>
+    </span></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content #content (ionScrollEnd)="onScroll($event)" style="background: #2b2b2b;color: white;">
+
+  <div style="background: #2b2b2b;position: sticky;top: 0;z-index: 999;">
+   
+
+ <div class="container">
+  <ion-grid class="container" #containerSegment>
+    <ion-row >
+      <ion-col class="th-segments" (click)="changeSegment(CRYPTO)" [ngStyle]="selectedSegment == CRYPTO && {'border-bottom': '1px solid #ffc046'}">CRYPTO</ion-col>
+      <ion-col class="th-segments" (click)="changeSegment(WATCHLIST)" [ngStyle]="selectedSegment == WATCHLIST && {'border-bottom': '1px solid #ffc046'}">WATCHLIST</ion-col>
+      <ion-col  class="th-segments" (click)="changeSegment(TRENDING)" [ngStyle]="selectedSegment == TRENDING && {'border-bottom': '1px solid #ffc046'}">TRENDING</ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+    </div>
+
+  </div> 
+
+  <ion-grid>
+    <ion-row  style="height: 35px;
+    font-size: 14px;
+    text-align: center;">
+      <ion-col style="    margin-top: 6px; ">Marketcap: {{cryptoProvider.globalmarketcap}}</ion-col>
+      <ion-col col-3><a  href={{cryptoProvider.tradeLink}}><button style="    border-radius: 4px;width: 60px;background: #05bd9b;color: #ffffff;padding: 5px;height: 30px;">TRADE</button></a></ion-col>
+
+    </ion-row></ion-grid>
+  <div> </div>
+  
+
+
+
+  <!-- <ion-slides (ionSlideDidChange)="onSlideChanged($event)" #mySlider > -->
+      <div  [ngSwitch]="selectedSegment" swipeSegment [tabsList]="slides" [(currentTab)]="selectedSegment" (tabChanged)="changeSegment($event)" class="swipe-area">
+
+
+
+   <div *ngSwitchCase="CRYPTO">
+        <ion-grid style="background: #4a4a4a;font-size: 13px;">
+            <ion-row>                
+                <ion-col >Name <ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col>
+                <ion-col>Price<ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col>
+                <!-- <ion-col style="white-space: nowrap;" col-3>Change<ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col> -->
+              <ion-col style="white-space: nowrap;" col-3>Change<ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid style="border-bottom: 1px solid #4a4a4a;    padding: 0;" *ngFor="let crypto of cryptos;let i = index;">
+
+          <ion-row  style="height: 45px;">
+         <ion-col (click)="addtoWhachlist(crypto.pair,crypto?.isWatchlist,i)" col-1><span style="padding-left: 3px;">
+          <ion-icon *ngIf="crypto?.isWatchlist" name="md-star" style="color: #ffc046;    font-size: 25px;"          ></ion-icon> 
+          <ion-icon  *ngIf="!crypto.isWatchlist" name="star-o" ></ion-icon>               </span>
+        </ion-col>
+            <ion-col (click)="gotoChart(crypto.pair)" style="overflow: hidden;margin:auto;text-align: left;white-space: nowrap;" >
+              
+              <span style="font-size:15px;font-weight: 100;white-space: nowrap;">
+                {{crypto.name}}
+              </span>
+            <div style="font-size: 10px;color:#9b9b9b;" *ngIf="crypto.Bullish">{{crypto.progreSbar}}%&nbsp;Bullish</div>
+            <div style="font-size: 10px;color:#9b9b9b;" *ngIf="!crypto.Bullish">{{crypto.progreSbar}}%&nbsp;Bearish</div>
+            </ion-col>
+            
+            <ion-col (click)="gotoChart(crypto.pair)" style="text-align: center;margin:auto;font-size:16px;">
+              <div [@changeBackgroundColor]="crypto.state">
+                {{crypto.price|tofixe}}
+              </div>
+            </ion-col>
+            <ion-col (click)="gotoChart(crypto.pair)" style="text-align: right;margin:auto;">
+              
+              <div style="font-size:12px;white-space: nowrap;text-align: right;" [ngStyle]="crypto.change24 > 0 && {'color': '#05bd9b'} || crypto.change24 < 0 && {'color': '#ef4364'}">
+                <span [@changeBackgroundColor]="crypto.state">
+                  {{crypto.change24|tofixe}}%
+                </span>
+              </div>
+            </ion-col>
+          
+          </ion-row>
+          <ion-row *ngIf="crypto.isvip && authData?.user?.state != 'approved'" (click)="gotovip()" style=" background: linear-gradient(to right,  #ffc046 , #f76b1c);
+          "> <ion-col >Upgrade to Premium and enjoy an ad-free experience </ion-col> <ion-col col-3 style=" 
+          text-align: center;"> <div style="margin-top: 3px;     padding-top: 4px;    padding-bottom: 2px;   border: solid 2px; border-radius: 3px;">UPGRADE</div>  </ion-col>
+          </ion-row>
+        </ion-grid>
+
+   </div>
+
+   <div *ngSwitchCase="WATCHLIST">
+      <div *ngIf="!cryptoProvider.isWatchlistEmpty">
+        <ion-grid style="background: #4a4a4a;font-size: 13px;">
+            <ion-row>                
+                <ion-col >Name <ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col>
+                <ion-col>Price<ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col>
+                <!-- <ion-col style="white-space: nowrap;" col-3>Change<ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col> -->
+              <ion-col style="white-space: nowrap;" col-3>Change<ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col>
+            </ion-row>
+        </ion-grid>
+            <ion-list>
+                <ion-item-group mode="md" reorder={{edit}} (ionItemReorder)="reorderItems($event)">
+                  <ion-item mode="md" *ngFor="let crypto of cryptosWatchlist;let i = index;" >
+            
+                    <ion-grid>
+          <ion-row style="border-bottom: 1px solid #4a4a4a;height: 45px;"  >
+         <ion-col (click)="addtoWhachlistWATCHLIST(crypto.pair,crypto.isWatchlist,i)" col-1><span style="padding-left: 3px;">
+          <ion-icon *ngIf="crypto?.isWatchlist" name="md-star" style="color: #ffc046; font-size: 25px;"          ></ion-icon> 
+          <ion-icon  *ngIf="!crypto?.isWatchlist" name="star-o" ></ion-icon>              </span>
+        </ion-col>
+            <ion-col (click)="gotoChart(crypto.pair)" style="overflow: hidden;margin:auto;text-align: left;white-space: nowrap;" >
+              
+              <span style="font-size:15px;font-weight: 100;white-space: nowrap;">
+                {{crypto.name}}
+              </span>
+            <div style="font-size: 10px;color:#9b9b9b;" *ngIf="crypto.Bullish">{{crypto.progreSbar}}%&nbsp;Bullish</div>
+            <div style="font-size: 10px;color:#9b9b9b;" *ngIf="!crypto.Bullish">{{crypto.progreSbar}}%&nbsp;Bearish</div>
+            </ion-col>
+            
+            <ion-col (click)="gotoChart(crypto.pair)" style="text-align: center;margin:auto;font-size:16px;">
+              <div [@changeBackgroundColor]="crypto.state">
+                {{crypto.price|tofixe}}
+              </div>
+            </ion-col>
+            <ion-col (click)="gotoChart(crypto.pair)" style="text-align: right;margin:auto;">
+              <div style="font-size:11px;text-align: right;color:#9b9b9b;">
+                  (24h)
+
+              </div>
+              <div style="font-size:12px;white-space: nowrap;text-align: right;" [ngStyle]="crypto.change24 > 0 && {'color': '#05bd9b'} || crypto.change24 < 0 && {'color': '#ef4364'}">
+                <span [@changeBackgroundColor]="crypto.state">
+                  {{crypto.change24|tofixe}}%
+                </span>
+              </div>
+            </ion-col>
+
+          </ion-row>
+
+        </ion-grid>
+        </ion-item>
+                </ion-item-group> </ion-list>
+
+     
+    </div>
+    <div *ngIf="cryptoProvider.isWatchlistEmpty" style="background: #2b2b2b;" padding>
+          <div  style="text-align: center;color:#f6ae22;margin-top: 30px;font-size: 18px;">STAY UP TO DATE
+      
+            </div>
+            <div style="text-align: center;color:#ffffff;margin-top: 10px;font-size: 12px;">Create a custom holdings watchlist</div>
+           <div style="text-align: center;    margin-bottom: -13px;">
+              <img style="height:270px;" src="assets/imgs/watchlist_empty.png">
+            </div>
+            <div style="text-align: center;"> 
+            <button (click)="addcoin()" style="background: #ffc046;color:#4a4a4a;width: 80%;height: 35px;text-align: center;font-weight: 600;">      Add Your First Coin</button></div>
+          </div>
+       </div>
+  
+   <div *ngSwitchCase="TRENDING">
+
+        <ion-grid style="background: #4a4a4a;font-size: 13px;">
+            <ion-row>                
+                <ion-col >Name <ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col>
+                <ion-col>Price<ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col>
+                <!-- <ion-col style="white-space: nowrap;" col-3>Change<ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col> -->
+              <ion-col style="white-space: nowrap;" col-3>Change<ion-icon style="padding-left: 2px;font-size: 12px;" name="sort"></ion-icon></ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid style="border-bottom: 1px solid #4a4a4a;" *ngFor="let crypto of cryptosTrending;let i = index;" >
+          <ion-row style="height: 45px;" >
+         <ion-col (click)="addtoWhachlistT(crypto.pair,crypto.isWatchlist,i)" col-1><span style="padding-left: 3px;">
+          <ion-icon *ngIf="crypto.isWatchlist" name="md-star" style="color: #ffc046; font-size: 25px;"          ></ion-icon> 
+          <ion-icon  *ngIf="!crypto.isWatchlist" name="star-o" ></ion-icon>               </span>
+        </ion-col>
+            <ion-col (click)="gotoChart(crypto.pair)" style="overflow: hidden;margin:auto;text-align: left;white-space: nowrap;" >
+              
+              <span style="font-size:15px;font-weight: 100;white-space: nowrap;">
+                {{crypto.name}}
+              </span>
+            <div style="font-size: 10px;color:#9b9b9b;" *ngIf="crypto.Bullish">{{crypto.progreSbar}}%&nbsp;Bullish</div>
+            <div style="font-size: 10px;color:#9b9b9b;" *ngIf="!crypto.Bullish">{{crypto.progreSbar}}%&nbsp;Bearish</div>
+            </ion-col>
+            
+            <ion-col (click)="gotoChart(crypto.pair)" style="text-align: center;margin:auto;font-size:16px;">
+              <div [@changeBackgroundColor]="crypto.state">
+                {{crypto.price|tofixe}}
+              </div>
+            </ion-col>
+            <ion-col (click)="gotoChart(crypto.pair)" style="text-align: right;margin:auto;">
+              <div style="font-size:11px;text-align: right;color:#9b9b9b;">
+                  (24h)
+
+              </div>
+              <div style="font-size:12px;white-space: nowrap;text-align: right;" [ngStyle]="crypto.change24 > 0 && {'color': '#05bd9b'} || crypto.change < 0 && {'color': '#ef4364'}">
+                <span [@changeBackgroundColor]="crypto.state">
+                  {{crypto.change24|tofixe}}%
+                </span>
+              </div>
+            </ion-col>
+
+          </ion-row>
+          <ion-row *ngIf="crypto.isvip && authData?.user?.state != 'approved'" (click)="gotovip()" style=" background: linear-gradient(to right,  #ffc046 , #f76b1c);
+          "> <ion-col >Upgrade to Premium and enjoy an ad-free experience </ion-col> <ion-col col-3 style=" 
+          text-align: center;"> <div style="margin-top: 3px;     padding-top: 4px;    padding-bottom: 2px;   border: solid 2px; border-radius: 3px;">UPGRADE</div>  </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+   </div> 
+
+
+  </div>
+  <ion-infinite-scroll *ngIf="selectedSegment != WATCHLIST" (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>

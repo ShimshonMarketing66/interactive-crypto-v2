@@ -1,0 +1,106 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title style="color: #FbbF18;
+    font-weight: 700;">{{ 'AddNewAlert' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding  style="background: #2b2b2b;color:white;">
+  <div style="color: #e2b000;font-weight: 700;font-size:130%;">{{ 'Market' | translate }}</div>
+  <span class=sexy_line></span>
+  <div>{{FROMSYMBOL}} / {{TOSYMBOL}}</div>
+  <div *ngIf="!hasExchange" style="padding-bottom:26px;"></div>
+  <!-- <div *ngIf="hasExchange" style="color: #e2b000;
+font-weight: 700;font-size:130%;padding-top:5%;">{{ 'SelectExchange' | translate }}</div>
+  <span *ngIf="hasExchange" class=sexy_line></span>
+  <ion-item *ngIf="hasExchange">
+    <ion-select style="color:#B3A8A8" [(ngModel)]="Exchange" (ionChange)="onSelectExchange($event)">
+      <ion-option *ngFor="let exchange of Exchanges">{{exchange}}</ion-option>
+    </ion-select>
+  </ion-item> -->
+  <div style="color:#B3A8A8;font-size:130%;">{{ 'SetThresholdTargets' | translate }}</div>
+  <span class=sexy_line></span>
+  <ion-grid>
+    <ion-row>
+      <ion-col  col-3 style="max-width:30%;">
+        <div style="display:  inline-flex;">{{ 'Above' | translate }}
+          <ion-icon style="color:#e2b000;padding-left: 19px;
+        " name="ios-arrow-up-outline"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col  col>
+        <div style="display: inline-flex;width: 50%;">
+          <input type="checkbox" id="Aboveboxid" [checked]="Abovebox">
+          <b style="padding-left:5px;"></b>
+          <input style="background: #2b2b2b;" [(ngModel)]="Above" type="number" id="AboveId">
+        </div>
+      </ion-col>
+      <ion-col  col-1 style="text-align: center;max-width:25%;">{{SignToSymbole}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col  col-3 style="max-width: 30%;">
+        <div style="display:  inline-flex;">{{ 'Current' | translate }}
+          <ion-icon style="color:#e2b000;padding-left: 12px;
+        " name="ios-remove-outline"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col  col>
+        <div style="display: inline-flex;width: 50%;">
+          <input style="opacity: 0" type="checkbox">
+          <b style="padding-left:5px;"></b>
+          <input  style="background: #2b2b2b;"  disabled="true;" type="text" placeholder="{{price}}">
+        </div>
+      </ion-col>
+      <ion-col  col-1 style="text-align: center;max-width:25%;">{{SignToSymbole}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col  col-3 style="max-width: 30%;">
+        <div style="display:  inline-flex;">{{ 'Below' | translate }}
+          <ion-icon style="color:#e2b000;padding-left: 19px;
+        " name="ios-arrow-down-outline"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col  col>
+        <div style="display: inline-flex;width: 50%;">
+          <input type="checkbox" id="Belowboxid" [checked]="Belowbox">
+          <b style="padding-left:5px;"></b>
+          <input  style="background: #2b2b2b;" [(ngModel)]="Below" type="number" id="BelowId">
+        </div>
+      </ion-col>
+      <ion-col  col-1 style="text-align: center;max-width:25%;">{{SignToSymbole}}</ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <div style="color:#B3A8A8;font-size:130%;padding-top:5%;">{{ 'AlertFrequency' | translate }}</div>
+  <span class=sexy_line></span>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <input type="radio" id="PersistentId" name="aaa" value="Persistent" [checked]="Persistent">
+        <label>{{ 'Persistent' | translate }}</label>
+      </ion-col>
+      <ion-col>
+        <input type="radio" id="1TimeId" name="aaa" value="Time1" [checked]="Time1">
+        <label>{{ 'OneTime' | translate }}</label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <input type="checkbox" id="MailId" [checked]="Mailcheck">
+        <label>{{ 'SendmeAlertbyMail' | translate }}</label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div (click)="saveAlert()">
+    <button class="AlertButton">{{ 'SAVE' | translate }}</button>
+  </div>
+
+
+</ion-content>

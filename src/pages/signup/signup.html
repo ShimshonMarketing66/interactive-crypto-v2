@@ -1,0 +1,69 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> {{ 'SIGN_UP' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background:#2b2b2b;">
+    
+  <div style="text-align: center;font-size: 16pt;color: white;padding-top: 4px;"> {{ 'SIGN_UP' | translate }}</div>
+  
+  <button (click)="loginViaProvider('facebook')" class="Facebookbutton" ion-button>
+    <ion-icon class="facebookicon" ios="logo-facebook" md="logo-facebook"></ion-icon> Facebook</button>
+  <button (click)="loginViaProvider('google')" class="Googlebutton" ion-button>
+    <ion-icon class="googleicon" name="logo-googleplus"></ion-icon> Google</button>
+  <div style="color: white;text-align: center;margin-top: 15px"> ----------------- {{ 'OR' | translate }} ----------------- </div>
+  <ion-item>
+      <ion-label  stacked>{{ 'First Name' | translate }}</ion-label>
+      <ion-input type="text" style="color:white" [(ngModel)]="profile.first_name" placeholder="{{ 'ENTER FIRST NAME' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label  stacked>{{ 'Last Name' | translate }}</ion-label>
+      <ion-input type="text" style="color:white" [(ngModel)]="profile.last_name" placeholder="{{ 'ENTER LAST NAME' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label  stacked>{{ 'Email' | translate }}</ion-label>
+      <ion-input type="email" style="color:white" [(ngModel)]="profile.email" placeholder="{{ 'ENTER EMAIL' | translate }}"></ion-input>
+    </ion-item>
+  
+    <ion-item mode="ios" (click)="presentcountries()">
+      <ion-label style="color: white;" stacked>{{ 'Country' | translate }}</ion-label>
+      <ion-input type="text" style="color:white" disabled =true class="custom-input"  [(ngModel)]="profile.countryData.country" placeholder={{country}}></ion-input>
+    </ion-item>
+  
+    <ion-grid style="padding:unset;margin-left:16px;font-size: 1.2rem;color: white;height: 55px;">
+      <ion-row>
+        <ion-col >
+         {{ ' Phone' | translate }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col (click)="presentDialCode()" col-2 style="padding-top: 5px;font-size:1.7rem; border-bottom: 1px solid #afb9d7;white-space: nowrap;">
+          {{profile.countryData.dial_code}}
+        </ion-col>
+        <ion-col (click)="presentDialCode()" col-1 style="padding-top: 5px;font-size:1.7rem;">
+          <ion-icon name="md-arrow-dropdown"></ion-icon>
+        </ion-col>
+        <ion-col style="padding-top:5px;font-size:1.7rem;border-bottom: 1px solid #afb9d7;">
+          <ion-input class="input-try" style="color:white" [(ngModel)]="profile.phone_number" type="number" placeholder="{{ 'phone number' | translate }}"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-item>
+      <ion-label  stacked>{{ 'Password' | translate }}</ion-label>
+      <ion-input type="password" style="color:white" [(ngModel)]="profile.password" placeholder="{{ 'ENTER PASSWORD' | translate }}"></ion-input>
+    </ion-item>
+  
+    <button class="Signinbutton" ion-button  (click)="submit()">{{ 'REGISTER' | translate }}</button>
+    <div style="text-align: center;color: red;font-size: 14pt;">
+      {{error}}
+    </div>
+    <div style="color:#4a4a4a">{{ 'By pressing Sign up you are agree to our' | translate }}
+      <b style="color:white;padding-left: 2px;" (click)="goToTremsAndConditions()">
+        {{ 'terms and conditions' | translate }}</b>
+    </div>
+  
+  </ion-content>

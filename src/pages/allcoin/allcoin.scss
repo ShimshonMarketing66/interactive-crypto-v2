@@ -1,0 +1,64 @@
+page-allcoin {
+    .col123{
+        cursor: pointer;
+        outline: none;
+    }
+    .col123:active{
+        transform: translateY(2px);
+    }
+
+    ion-slides {
+        height: auto;
+        position: absolute;
+      }
+     
+      .swipe-area {
+        height:100%;
+        width:100%;
+      }
+
+
+      
+    .container {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        background: #2b2b2b;
+    }
+
+    .th-segments {
+        font-size: 16px;
+        padding: .5em .5em;
+        color: #ffc046;
+    }
+    ::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    :host {
+  display: block;
+  overflow: hidden; /* Hide everything that doesn't fit compoennt */
+}
+.parent {
+  height: 100%;
+  width: 200%;      /* Make the parent element to take up twice
+                       of the component's width */
+  display: flex;    /* Align all children in a row */
+  div { flex: 1; }  /* Evenly divide width between children */
+}
+
+.test1{
+    position: sticky;padding-top: 5px;z-index: 998;background: #2b2b2b;top: -30px;
+
+}
+.test2{
+    position: sticky;padding-top: 5px;z-index: 998;background: #2b2b2b;top: 4px;
+
+}
+.item-block {
+    max-height: 4.4rem; 
+    background: #2b2b2b;
+    color: white;
+    border-bottom: 1px solid #4a4a4a; 
+}
+   }

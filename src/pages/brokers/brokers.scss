@@ -1,0 +1,78 @@
+page-brokers{
+    .titl-brokers{
+
+width: 21%;
+
+    }
+    .titl-min {
+        width: 17%;
+        text-align: center;
+        padding-left: 5%;
+        
+    }
+    .titl-crypto{
+        
+        width: 20%;
+        text-align: center;
+       
+        
+    }
+    .titl-traiding{
+        width: 25%;
+        text-align: center;   
+    }
+    
+    .brokermin{
+        font-size: 250%;
+        font-weight: 500;
+        color: #474747;
+    }
+    .brokerimg{  
+        width: 30%;
+        text-align: center;
+        margin-top: 5%;
+    }
+    .brokercrypto{
+        text-align: center;
+    }
+
+    .buttonsite{
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #e2b000;
+        height: 36px;
+        width: 100%;
+     
+        font-size: 130%;
+    }
+    .sexy_line {
+        display: block;
+        border: none;
+        color: white;
+        height: 1.5px;
+        background: black;
+        background: -webkit-gradient(radial, 50% 50%, 32, 76% 65%, 0, from(#ffdd7f), to(#ffe4fe));
+        margin-bottom: 5%;
+        text-align: center;
+        margin-left: 13%; }
+        .titlecol{
+            color: #a59a9a;
+            font-size: 83%;
+        }
+        .coinsupport{
+            margin-top: 35px;
+max-width: 130px;
+
+        }
+        @media screen and (min-width:350px) {
+       .coinsupport {
+        margin-top: 30px;}
+}
+@media screen and (min-width:650px) {
+    .coinsupport {
+     margin-top: 6px;}
+}
+
+}
